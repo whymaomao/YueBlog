@@ -43,7 +43,7 @@ CMSSignedData cmsSignedData = new CMSSignedData(responseDat);
         log.info("this is a log message")
       ```
       go to Jmeter app, Options --> Log Viewer to check the logs
-      {% asset_img jmeter_logview.png %}
+   <img alt="jmeter_logview.png" src="/Users/yueh/Hexo/YueBlog/source/_posts/jmeter_logview.png"/>
       * SampleRequest: use SampleRequest to get the request body / headers for handling
       ```groovy
         SampleResult.setResponseHeaders("response headers");
