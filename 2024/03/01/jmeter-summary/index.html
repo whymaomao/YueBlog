@@ -14,17 +14,17 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="How to write a jmeter script to generete complex request payload and parse response body To specify the java version to run the script: set java home as java8 or java17  Go to the installation directo">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/jmeter_logview.png">
+<meta property="og:image" content="https://whymaomao.github.io/Users/yueh/Hexo/YueBlog/source/_posts/jmeter_logview.png">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/create_groovy_lib_project.png">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/project_depedency.png">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/artifact_configuration.png">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/response_code_not_200.png">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/img.png">
 <meta property="article:published_time" content="2024-03-01T09:27:59.000Z">
-<meta property="article:modified_time" content="2024-03-06T10:57:28.622Z">
+<meta property="article:modified_time" content="2024-03-09T08:38:57.602Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/jmeter_logview.png">
+<meta name="twitter:image" content="https://whymaomao.github.io/Users/yueh/Hexo/YueBlog/source/_posts/jmeter_logview.png">
   
     <link rel="alternate" href="/YueBlog/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -104,15 +104,24 @@
 </ol>
 <h3 id="How-to-generate-the-complex-request-and-parse-response-payload"><a href="#How-to-generate-the-complex-request-and-parse-response-payload" class="headerlink" title="How to generate the complex request and parse response payload ?"></a>How to generate the complex request and parse response payload ?</h3><p>For example: our scenarios needs to implement SCEP protocol for test, we can add dependency packages in the script,<br>and use the library to help us implement the request payload easily.</p>
 <ol>
-<li>add dependency jar package into JMeter external libs directory:  /usr/local/opt/jmeter/libexec/lib/ext</li>
-<li>restart Jmeter app to load the external jar packages</li>
-<li>write your own processor groovy handling functions by importing the jar packages <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.bouncycastle.cms.*;</span><br><span class="line">CMSSignedData cmsSignedData = <span class="keyword">new</span> CMSSignedData(responseDat);</span><br></pre></td></tr></table></figure></li>
-<li>jmeter provides some built-in functions to help us: <ul>
-<li>ctx: use ctx to get the response body / headers for handling<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.getPreviousResult().getResponseHeaders()</span><br><span class="line">ctx.getPreviousResult().getResponseData();</span><br></pre></td></tr></table></figure></li>
-<li>vars: use vars to set and get the variables and pass between the scripts<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vars.put(<span class="string">&quot;token&quot;</span>, <span class="string">&quot;xxxx&quot;</span>);</span><br><span class="line">vars.get(<span class="string">&quot;token&quot;</span>)</span><br><span class="line">Object object = <span class="keyword">new</span> Object();</span><br><span class="line">vars.putObject(<span class="string">&quot;object&quot;</span>, object)</span><br><span class="line">Object newObject = (Object)vars.getObject(<span class="string">&quot;object&quot;</span>);</span><br></pre></td></tr></table></figure></li>
-<li>log: use log to print the logs in the jmeter console<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.info(<span class="string">&quot;this is a log message&quot;</span>)</span><br></pre></td></tr></table></figure>
-go to Jmeter app, Options –&gt; Log Viewer to check the logs<br><img src="jmeter_logview.png" alt="img.png"></li>
-<li>SampleRequest: use SampleRequest to get the request body / headers for handling<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SampleResult.setResponseHeaders(<span class="string">&quot;response headers&quot;</span>);</span><br><span class="line">SampleResult.setResponseData(<span class="string">&quot;response data&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>add dependency jar package into JMeter external libs directory:  /usr/local/opt/jmeter/libexec/lib/ext</p>
+</li>
+<li><p>restart Jmeter app to load the external jar packages</p>
+</li>
+<li><p>write your own processor groovy handling functions by importing the jar packages </p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.bouncycastle.cms.*;</span><br><span class="line">CMSSignedData cmsSignedData = <span class="keyword">new</span> CMSSignedData(responseDat);</span><br></pre></td></tr></table></figure></li>
+<li><p>jmeter provides some built-in functions to help us: </p>
+<ul>
+<li><p>ctx: use ctx to get the response body / headers for handling</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ctx.getPreviousResult().getResponseHeaders()</span><br><span class="line">ctx.getPreviousResult().getResponseData();</span><br></pre></td></tr></table></figure></li>
+<li><p>vars: use vars to set and get the variables and pass between the scripts</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vars.put(<span class="string">&quot;token&quot;</span>, <span class="string">&quot;xxxx&quot;</span>);</span><br><span class="line">vars.get(<span class="string">&quot;token&quot;</span>)</span><br><span class="line">Object object = <span class="keyword">new</span> Object();</span><br><span class="line">vars.putObject(<span class="string">&quot;object&quot;</span>, object)</span><br><span class="line">Object newObject = (Object)vars.getObject(<span class="string">&quot;object&quot;</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>log: use log to print the logs in the jmeter console</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.info(<span class="string">&quot;this is a log message&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>go to Jmeter app, Options –&gt; Log Viewer to check the logs</p>
+<img alt="jmeter_logview.png" src="/Users/yueh/Hexo/YueBlog/source/_posts/jmeter_logview.png"/></li>
+<li><p>SampleRequest: use SampleRequest to get the request body / headers for handling</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SampleResult.setResponseHeaders(<span class="string">&quot;response headers&quot;</span>);</span><br><span class="line">SampleResult.setResponseData(<span class="string">&quot;response data&quot;</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
 </li>
 </ol>
