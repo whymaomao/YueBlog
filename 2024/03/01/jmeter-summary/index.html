@@ -14,17 +14,17 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="How to write a jmeter script to generete complex request payload and parse response body To specify the java version to run the script: set java home as java8 or java17  Go to the installation directo">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://whymaomao.github.io/Users/yueh/Hexo/YueBlog/source/_posts/jmeter_logview.png">
-<meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/create_groovy_lib_project.png">
-<meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/project_depedency.png">
-<meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/artifact_configuration.png">
-<meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/response_code_not_200.png">
-<meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/img.png">
+<meta property="og:image" content="https://whymaomao.github.io/YueBlog/YueBlog/2024/03/01/jmeter-summary/create_groovy_lib_project.png">
+<meta property="og:image" content="https://whymaomao.github.io/YueBlog/YueBlog/2024/03/01/jmeter-summary/create_groovy_lib_project.png">
+<meta property="og:image" content="https://whymaomao.github.io/YueBlog/YueBlog/2024/03/01/jmeter-summary/project_depedency.png">
+<meta property="og:image" content="https://whymaomao.github.io/YueBlog/YueBlog/2024/03/01/jmeter-summary/artifact_configuration.png">
+<meta property="og:image" content="https://whymaomao.github.io/YueBlog/YueBlog/2024/03/01/jmeter-summary/response_code_not_200.png">
+<meta property="og:image" content="https://whymaomao.github.io/YueBlog/YueBlog/2024/03/01/jmeter-summary/action_after_sample_error.png">
 <meta property="article:published_time" content="2024-03-01T09:27:59.000Z">
-<meta property="article:modified_time" content="2024-03-09T08:38:57.602Z">
+<meta property="article:modified_time" content="2024-03-11T09:22:46.136Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://whymaomao.github.io/Users/yueh/Hexo/YueBlog/source/_posts/jmeter_logview.png">
+<meta name="twitter:image" content="https://whymaomao.github.io/YueBlog/YueBlog/2024/03/01/jmeter-summary/create_groovy_lib_project.png">
   
     <link rel="alternate" href="/YueBlog/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -118,8 +118,8 @@
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vars.put(<span class="string">&quot;token&quot;</span>, <span class="string">&quot;xxxx&quot;</span>);</span><br><span class="line">vars.get(<span class="string">&quot;token&quot;</span>)</span><br><span class="line">Object object = <span class="keyword">new</span> Object();</span><br><span class="line">vars.putObject(<span class="string">&quot;object&quot;</span>, object)</span><br><span class="line">Object newObject = (Object)vars.getObject(<span class="string">&quot;object&quot;</span>);</span><br></pre></td></tr></table></figure></li>
 <li><p>log: use log to print the logs in the jmeter console</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">log.info(<span class="string">&quot;this is a log message&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>go to Jmeter app, Options –&gt; Log Viewer to check the logs</p>
-<img alt="jmeter_logview.png" src="/Users/yueh/Hexo/YueBlog/source/_posts/jmeter_logview.png"/></li>
+<p>go to Jmeter app, Options –&gt; Log Viewer to check the logs<br><img src="/YueBlog/YueBlog/2024/03/01/jmeter-summary/create_groovy_lib_project.png" alt="img.png"></p>
+</li>
 <li><p>SampleRequest: use SampleRequest to get the request body / headers for handling</p>
 <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SampleResult.setResponseHeaders(<span class="string">&quot;response headers&quot;</span>);</span><br><span class="line">SampleResult.setResponseData(<span class="string">&quot;response data&quot;</span>);</span><br></pre></td></tr></table></figure></li>
 </ul>
@@ -127,10 +127,10 @@
 </ol>
 <h3 id="How-to-extract-common-functions-into-library-for-jmeter"><a href="#How-to-extract-common-functions-into-library-for-jmeter" class="headerlink" title="How to extract common functions into library for jmeter"></a>How to extract common functions into library for jmeter</h3><p>refer to: <a target="_blank" rel="noopener" href="https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s">https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s</a></p>
 <ol>
-<li>create a new groovy project in intellij idea<br><img src="create_groovy_lib_project.png" alt="img.png"></li>
-<li>open project structure in intellij app, go to Modules, add the dependency jars used for the groovy classes, here I put the dependency libs in directory “libs”<br><img src="project_depedency.png" alt="img.png"></li>
+<li>create a new groovy project in intellij idea<br><img src="/YueBlog/YueBlog/2024/03/01/jmeter-summary/create_groovy_lib_project.png" alt="img.png"></li>
+<li>open project structure in intellij app, go to Modules, add the dependency jars used for the groovy classes, here I put the dependency libs in directory “libs”<br><img src="/YueBlog/YueBlog/2024/03/01/jmeter-summary/project_depedency.png" alt="img.png"></li>
 <li>add a new groovy class in the new project</li>
-<li>open project structure in intellij app, go to Artifacts, select “From modules with dependencies” to build the artifact<br><img src="artifact_configuration.png" alt="img.png"></li>
+<li>open project structure in intellij app, go to Artifacts, select “From modules with dependencies” to build the artifact<br><img src="/YueBlog/YueBlog/2024/03/01/jmeter-summary/artifact_configuration.png" alt="img.png"></li>
 <li>Go to intellij – Build – Build artifacts to generate the jar library</li>
 <li>Go to project directory, a new “out” directory generated with the artifacts</li>
 <li>Copy the jar into the JMeter ext library and restart JMeter app to load the jar</li>
@@ -139,7 +139,7 @@
 <ol>
 <li>Add a Response Assertion to the request </li>
 <li>Set the response code to the expected code </li>
-<li>Set the response assertion to “Ignore Status” to avoid breaking the test<br><img src="response_code_not_200.png" alt="img.png"></li>
+<li>Set the response assertion to “Ignore Status” to avoid breaking the test<br><img src="/YueBlog/YueBlog/2024/03/01/jmeter-summary/response_code_not_200.png" alt="img.png"></li>
 </ol>
 <h3 id="How-to-add-custom-assertion-to-the-response"><a href="#How-to-add-custom-assertion-to-the-response" class="headerlink" title="How to add custom assertion to the response"></a>How to add custom assertion to the response</h3><p>In addition to checking the response code, we also need to check the response body to make sure the test is correct </p>
 <ol>
@@ -147,7 +147,7 @@
 <li>Extract the value in response body and check whether it is expected </li>
 <li>If not, set the request as false<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prev.setSuccessful(<span class="literal">false</span>)</span><br></pre></td></tr></table></figure></li>
 <li>Add a JSR223 Assertion to the request<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( !prev.isSuccessful() ) &#123;</span><br><span class="line">	AssertionResult.setFailure(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>In thread group settings, set the Action as “Stop Thread” when the assertion result is failed<br><img src="img.png" alt="img.png"></li>
+<li>In thread group settings, set the Action as “Stop Thread” when the assertion result is failed<br><img src="/YueBlog/YueBlog/2024/03/01/jmeter-summary/action_after_sample_error.png" alt="img.png"></li>
 </ol>
 
       
