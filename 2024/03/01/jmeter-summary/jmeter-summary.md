@@ -53,12 +53,12 @@ CMSSignedData cmsSignedData = new CMSSignedData(responseDat);
 ### How to extract common functions into library for jmeter
 refer to: https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s
 1. create a new groovy project in intellij idea 
-![img.png](create_groovy_lib_project.png)
+![img.png](jmeter-summary/create_groovy_lib_project.png)
 2. open project structure in intellij app, go to Modules, add the dependency jars used for the groovy classes, here I put the dependency libs in directory "libs"
-![img.png](project_depedency.png)
+![img.png](jmeter-summary/project_depedency.png)
 3. add a new groovy class in the new project
 4. open project structure in intellij app, go to Artifacts, select "From modules with dependencies" to build the artifact
-![img.png](artifact_configuration.png)
+![img.png](jmeter-summary/artifact_configuration.png)
 5. Go to intellij – Build – Build artifacts to generate the jar library
 6. Go to project directory, a new "out" directory generated with the artifacts
 7. Copy the jar into the JMeter ext library and restart JMeter app to load the jar
@@ -68,7 +68,7 @@ Jmeter would mark the request as failed if the response status code is not 200, 
 1. Add a Response Assertion to the request 
 2. Set the response code to the expected code 
 3. Set the response assertion to "Ignore Status" to avoid breaking the test
-![img.png](response_code_not_200.png)
+![img.png](jmeter-summary/response_code_not_200.png)
 
 ### How to add custom assertion to the response 
 In addition to checking the response code, we also need to check the response body to make sure the test is correct 
@@ -86,7 +86,7 @@ if( !prev.isSuccessful() ) {
 
 ```
 5.In thread group settings, set the Action as "Stop Thread" when the assertion result is failed 
-![img.png](img.png)
+![img.png](jmeter-summary/action_after_sample_error.png)
 
       
       
