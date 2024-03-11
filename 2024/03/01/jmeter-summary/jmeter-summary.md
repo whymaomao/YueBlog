@@ -68,7 +68,7 @@ Jmeter would mark the request as failed if the response status code is not 200, 
 1. Add a Response Assertion to the request 
 2. Set the response code to the expected code 
 3. Set the response assertion to "Ignore Status" to avoid breaking the test
-![img.png](jmeter-summary/response_code_not_200.png)
+![img.png](./jmeter-summary/response_code_not_200.png)
 
 ### How to add custom assertion to the response 
 In addition to checking the response code, we also need to check the response body to make sure the test is correct 
