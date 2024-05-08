@@ -112,7 +112,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -130,6 +130,74 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/04/24/docker/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Yue">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/24/docker/" class="post-title-link" itemprop="url">docker</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-04-24 08:41:04" itemprop="dateCreated datePublished" datetime="2024-04-24T08:41:04+08:00">2024-04-24</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -175,7 +243,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-04-01 08:46:49" itemprop="dateModified" datetime="2024-04-01T08:46:49+08:00">2024-04-01</time>
+      <time title="Modified: 2024-04-16 22:09:43" itemprop="dateModified" datetime="2024-04-16T22:09:43+08:00">2024-04-16</time>
     </span>
 
   
@@ -188,10 +256,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <ol>
-<li>How to check my application CPU reaches to 100%</li>
-</ol>
+          <p>When running load tests, we encounter an issue that the server VM CPU has reached 100% after running for a while. Here are some common troubleshooting steps to identify the issue:<br>Our webserver is using tomcat as the webserver and setup in linux machine. </p>
+<h3 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h3><p>When issue happens, first we can use linux command <strong>uptime</strong> to check the overall status of the server.<br><strong>uptime</strong> command will show the current time, how long the server has been running, how many users are currently logged on, and the system load averages for the past 1, 5, and 15 minutes.<br>The load average is the average number of processes that are either in a runnable or uninterruptable state.</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">uptime</span></span></span><br><span class="line">    07:45:38 up  32 min,  2 users,  load average: 14.04, 5.77, 2.29</span><br></pre></td></tr></table></figure>
+<p>Take the above output as an example, it shows the server is running for 32 minutes, 2 users logged on, and the load average is 14.04 for the past 1 minute, 5.77 for the past 5 minutes, and 2.29 for the past 15 minutes.<br>which indicates that the load in server is increasing in the past 1 minute.</p>
+<p>Checked the CPU number of the server, it has 8 CPUs. If the load average is larger that the CPU number, it means the server is under the heavy load.<br>To be more specific, the server is by <em>(14.04 - 8) *100% = 604%</em> overloaded in the past 1 minute.</p>
+<p>If the load average reaches 75% of the CPU number, we need to pay attention to the server performance.</p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>We can also use <strong>top</strong> command to check more details of the server status<br>Click 1 button to show the details of each CPU core. </p>
+<p><img src="../images/top.png" alt="img.png"></p>
+<p>Use below command to check more details in a java program </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -H $pid </span><br></pre></td></tr></table></figure>
 
+<p><img src="../images/top_pid.png" alt="img.png"></p>
+<p>As shown in the above screenshot, the main reason caused the high CPU usage is the GC threads in the java program.<br>Then we can focus on the GC logs to check the GC status.</p>
+<h3 id><a href="#" class="headerlink" title></a></h3>
       
     </div>
 
@@ -381,7 +459,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-12 20:51:49" itemprop="dateModified" datetime="2024-03-12T20:51:49+08:00">2024-03-12</time>
+      <time title="Modified: 2024-05-08 08:35:38" itemprop="dateModified" datetime="2024-05-08T08:35:38+08:00">2024-05-08</time>
     </span>
 
   
@@ -446,9 +524,51 @@
 <li>Extract the value in response body and check whether it is expected </li>
 <li>If not, set the request as false<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prev.setSuccessful(<span class="literal">false</span>)</span><br></pre></td></tr></table></figure></li>
 <li>Add a JSR223 Assertion to the request<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( !prev.isSuccessful() ) &#123;</span><br><span class="line">	AssertionResult.setFailure(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-<li>In thread group settings, set the Action as “Stop Thread” when the assertion result is failed<br><img src="images/action_after_sample_error.png" alt="img.png">
-
+<li>In thread group settings, set the Action as “Stop Thread” when the assertion result is failed<br><img src="images/action_after_sample_error.png" alt="img.png"></li>
+</ol>
+<h1 id="How-to-use-JSR223-sampler-processor-in-jmeter"><a href="#How-to-use-JSR223-sampler-processor-in-jmeter" class="headerlink" title="How to use JSR223 sampler/processor in jmeter:"></a>How to use JSR223 sampler/processor in jmeter:</h1><p>JSR223 stands for “Java Specification Request 223.” It’s a standard within the Java platform that defines scripting language bindings for the Java Virtual Machine (JVM).<br>Use JSR223 allows to execute custom scripts in jmeter for complex scenarios</p>
+<ol>
+<li>JSR223 usage:<ul>
+<li>Dynamic generate request payloads, parameters or headers</li>
+<li>Conditional logic: control the flow of execution based on runtime conditions or responses</li>
+<li>Data Transformation: parse or format data retrieved from server responses or external sources</li>
+<li>Custom assertions or validations</li>
+</ul>
 </li>
+</ol>
+<ol start="2">
+<li>Custom Jmeter library usage:<ul>
+<li>Add the custom library to the jmeter classpath by copying the jar file to the lib/ext directory of the jmeter installation directory</li>
+<li>Restart the jmeter jar to reload the customer library</li>
+<li>Use the custom library in the JSR223 sampler by importing the required classes and methods<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.example.MyClass</span><br><span class="line">MyClass myClass = <span class="keyword">new</span> MyClass()</span><br><span class="line"><span class="keyword">var</span> payload = myClass.myMethod()</span><br><span class="line">vars.put(<span class="string">&quot;httpPayload&quot;</span>, payload)</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ol>
+<ol start="3">
+<li>Use JSR223 sampler to create a custom request<ul>
+<li>Scenarios: Send request with dynamic client certificate</li>
+<li>implement custom http client java class to support sending request with client certificate, extract it as a jar file</li>
+<li>add the jar file to the jmeter library</li>
+<li>add a new JSR223 sampler and call the custom http client class to send the request</li>
+<li>Use pre-defined jmeter to set the response data to view in the result tree<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">SampleResult.setSamplerData(<span class="string">&quot;your request payload&quot;</span>)</span><br><span class="line">SampleResult.setResponseData(response, <span class="string">&quot;UTF-8&quot;</span>)</span><br><span class="line">SampleResult.setResponseCodeOK()</span><br></pre></td></tr></table></figure></li>
+<li>Compile the JSR223 script by going to Tools –&gt; Compile JSR223 Test Elements</li>
+</ul>
+</li>
+</ol>
+<h1 id="How-to-debug-jmeter-test-plan"><a href="#How-to-debug-jmeter-test-plan" class="headerlink" title="How to debug jmeter test plan:"></a>How to debug jmeter test plan:</h1><ol>
+<li>set the log level in jmeter GUI by going to Options -&gt; Log Level -&gt; DEBUG / TRACE</li>
+<li>enable log viewer by going to Options -&gt; Log Viewer</li>
+<li>Check logs in jmeter - GUI</li>
+<li>Or check the logs in the jmeter.log file in the jmeter bin directory: e.g /usr/local/Cellar/jmeter/5.6.3/libexec/bin/jmeter.log</li>
+<li>Or change the log level in the log4j2.xml file in the bin directory of jmeter for the specific class you want to debug</li>
+<li>Add a debug sampler in the test plan to print the Jmeter variables value</li>
+</ol>
+<h1 id="How-to-record-for-simple-web-browser-requests"><a href="#How-to-record-for-simple-web-browser-requests" class="headerlink" title="How to record for simple web browser requests:"></a>How to record for simple web browser requests:</h1><ol>
+<li>Go to browser, record the web requests and save it as .har file</li>
+<li>Go to blazemeter online site: <a target="_blank" rel="noopener" href="https://converter.blazemeter.com/">https://converter.blazemeter.com/</a></li>
+<li>Upload the har file and convert it into jmx file</li>
+<li>Download the jmx file and open it in jmeter</li>
+<li>Refactor the jmx file accordingly </li>
 </ol>
 
       
