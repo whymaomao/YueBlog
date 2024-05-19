@@ -19,27 +19,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="Algorithm: LeetCode 1020 Number of EnclavesThis is a typical Graph problem. And I used the BFS algorithm to solve it.Searched all the conncted “1” in the array, if the connected area has a “1” on the">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/index.html">
+<meta property="og:title" content="ARTS-2024-05-19">
+<meta property="og:url" content="https://whymaomao.github.io/YueBlog/2024/05/19/ARTS-2024-05-19/index.html">
 <meta property="og:site_name" content="Yue&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="Algorithm: LeetCode 1020 Number of EnclavesThis is a typical Graph problem. And I used the BFS algorithm to solve it.Searched all the conncted “1” in the array, if the connected area has a “1” on the">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-01-13T11:25:42.405Z">
-<meta property="article:modified_time" content="2024-03-12T12:35:48.461Z">
+<meta property="article:published_time" content="2024-05-19T08:45:14.000Z">
+<meta property="article:modified_time" content="2024-05-19T09:11:40.317Z">
 <meta property="article:author" content="Yue">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/">
+<link rel="canonical" href="https://whymaomao.github.io/YueBlog/2024/05/19/ARTS-2024-05-19/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/","path":"2024/01/13/hello-world/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://whymaomao.github.io/YueBlog/2024/05/19/ARTS-2024-05-19/","path":"2024/05/19/ARTS-2024-05-19/","title":"ARTS-2024-05-19"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | Yue's Blog</title>
+<title>ARTS-2024-05-19 | Yue's Blog</title>
   
 
 
@@ -104,7 +104,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Insert-images-into-blog"><span class="nav-number">1.5.</span> <span class="nav-text">Insert images into blog</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#LeetCode-1020-Number-of-Enclaves"><span class="nav-number">1.</span> <span class="nav-text">LeetCode 1020 Number of Enclaves</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -145,7 +145,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/05/19/ARTS-2024-05-19/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -158,12 +158,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | Yue's Blog">
+      <meta itemprop="name" content="ARTS-2024-05-19 | Yue's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          ARTS-2024-05-19
         </h1>
 
         <div class="post-meta-container">
@@ -173,15 +173,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-01-13 19:25:42" itemprop="dateCreated datePublished" datetime="2024-01-13T19:25:42+08:00">2024-01-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-12 20:35:48" itemprop="dateModified" datetime="2024-03-12T20:35:48+08:00">2024-03-12</time>
+      <time title="Created: 2024-05-19 16:45:14 / Modified: 17:11:40" itemprop="dateCreated datePublished" datetime="2024-05-19T16:45:14+08:00">2024-05-19</time>
     </span>
 
   
@@ -193,21 +187,16 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><p><strong>Algorithm</strong>:</p>
+<h3 id="LeetCode-1020-Number-of-Enclaves"><a href="#LeetCode-1020-Number-of-Enclaves" class="headerlink" title="LeetCode 1020 Number of Enclaves"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-enclaves/">LeetCode 1020 Number of Enclaves</a></h3><p>This is a typical Graph problem. And I used the BFS algorithm to solve it.<br>Searched all the conncted “1” in the array, if the connected area has a “1” on the border, then it is not an enclave.<br>Else increase the count of the result. </p>
+<p>Defined a Queue to store the connected “1” in the array, used the visited array to mark the visited “1”</p>
+<p><strong>Review</strong>:<br><a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/conference/hotcloud16/hotcloud16_burns.pdf">https://www.usenix.org/system/files/conference/hotcloud16/hotcloud16_burns.pdf</a> </p>
+<p>Design Pattern for container-based distributed systems:<br>This paper describes three types of design patterns used in container-based system:<br>single-container pattern for container management, single-node patterns of closedly cooperating-containers, and multi-node patterns for distributed algorithms </p>
+<p>TODO: used the pattern in the real project </p>
+<p><strong>Tips</strong>:<br>How to implement multiple public Ips for azure loadtest jmeter engines:<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/load-testing/concept-azure-load-testing-vnet-injection#scenario-load-test-a-public-endpoint-with-access-restrictions">https://learn.microsoft.com/en-us/azure/load-testing/concept-azure-load-testing-vnet-injection#scenario-load-test-a-public-endpoint-with-access-restrictions</a></p>
+<p>Deploy a NAT Gateway resource in the virtual network, and then create a load test in the private network with this NAT gateway.<br>These load test engines VMs will have the public IP address defined in NAT gateway. </p>
+<p><strong>Share</strong>:<br><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/40092">https://time.geekbang.org/column/article/40092</a> </p>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d -g -i /Users/yueh/.ssh/id_github</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="Insert-images-into-blog"><a href="#Insert-images-into-blog" class="headerlink" title="Insert images into blog"></a>Insert images into blog</h3><p>$ create a new directory in source/images<br>$ put the images into the directory<br>$ use the markdown syntax to insert the images into the blog</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">img.png</span>](<span class="link">images/jmeter_logview.png</span>)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -220,11 +209,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/2024/05/08/common-linux-command/" rel="prev" title="common-linux-command">
+                  <i class="fa fa-angle-left"></i> common-linux-command
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/01/29/bash-shell-script/" rel="next" title="bash shell script">
-                  bash shell script <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
