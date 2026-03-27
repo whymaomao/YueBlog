@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 5.4.2">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/YueBlog/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/YueBlog/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/YueBlog/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/YueBlog/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/YueBlog/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":350},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
+
+    <meta name="description" content="来源: Work RCA | 日期: 2026-03-27  Azure SQL WAL 机制Azure SQL 采用 Write-Ahead Logging（WAL）：每次 INSERT&#x2F;UPDATE&#x2F;DELETE 不直接写数据文件，而是先写事务日志（.ldf），由后台异步刷入数据文件（.mdf）。 1234567Java INSERT    │    ▼事务日志 (.ldf)   ← 同步写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Azure SQL 高 DTU 排查：Log IO 饱和">
+<meta property="og:url" content="https://whymaomao.github.io/YueBlog/2026/03/27/2026-03-27-azure-sql-high-dtu/index.html">
+<meta property="og:site_name" content="Yue&#39;s Blog">
+<meta property="og:description" content="来源: Work RCA | 日期: 2026-03-27  Azure SQL WAL 机制Azure SQL 采用 Write-Ahead Logging（WAL）：每次 INSERT&#x2F;UPDATE&#x2F;DELETE 不直接写数据文件，而是先写事务日志（.ldf），由后台异步刷入数据文件（.mdf）。 1234567Java INSERT    │    ▼事务日志 (.ldf)   ← 同步写">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-03-27T06:20:00.000Z">
+<meta property="article:modified_time" content="2026-03-27T07:27:03.104Z">
+<meta property="article:author" content="Yue">
+<meta property="article:tag" content="performance">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="https://whymaomao.github.io/YueBlog/2026/03/27/2026-03-27-azure-sql-high-dtu/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://whymaomao.github.io/YueBlog/2026/03/27/2026-03-27-azure-sql-high-dtu/","path":"2026/03/27/2026-03-27-azure-sql-high-dtu/","title":"Azure SQL 高 DTU 排查：Log IO 饱和"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Azure SQL 高 DTU 排查：Log IO 饱和 | Yue's Blog</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/YueBlog/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/YueBlog/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Yue's Blog</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">Engineering Notes</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/YueBlog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/YueBlog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-categories"><a href="/YueBlog/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a></li><li class="menu-item menu-item-tags"><a href="/YueBlog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Azure-SQL-WAL-%E6%9C%BA%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">Azure SQL WAL 机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A1%88%E4%BE%8B%EF%BC%9A%E7%A1%AE%E8%AE%A4%E6%98%AF-Log-IO-%E4%B8%BB%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">案例：确认是 Log IO 主导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-1-%E2%80%94-Azure-Portal-%E8%A7%82%E5%AF%9F"><span class="nav-number">2.1.</span> <span class="nav-text">Step 1 — Azure Portal 观察</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-2-%E2%80%94-Query-Store-%E6%8C%89-Log-Bytes-%E6%8E%92%E5%BA%8F"><span class="nav-number">2.2.</span> <span class="nav-text">Step 2 — Query Store 按 Log Bytes 排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Step-3-%E2%80%94-%E8%B4%A1%E7%8C%AE%E5%BA%A6%E5%88%86%E6%9E%90"><span class="nav-number">2.3.</span> <span class="nav-text">Step 3 — 贡献度分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A4%E6%96%AD%E6%98%AF-High-Data-IO-%E9%97%AE%E9%A2%98"><span class="nav-number">3.</span> <span class="nav-text">如何判断是 High Data IO 问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Azure-Portal-%E4%BF%A1%E5%8F%B7"><span class="nav-number">3.1.</span> <span class="nav-text">Azure Portal 信号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Query-Store-%E8%AF%8A%E6%96%AD%EF%BC%9A%E6%8C%89%E7%89%A9%E7%90%86%E8%AF%BB%E6%8E%92%E5%BA%8F"><span class="nav-number">3.2.</span> <span class="nav-text">Query Store 诊断：按物理读排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B8%E5%9E%8B-Data-IO-%E9%AB%98%E7%9A%84%E8%BE%93%E5%87%BA%E7%89%B9%E5%BE%81"><span class="nav-number">3.3.</span> <span class="nav-text">典型 Data IO 高的输出特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E6%A0%B9%E5%9B%A0"><span class="nav-number">3.4.</span> <span class="nav-text">常见根因</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%94%B6%E8%8E%B7"><span class="nav-number">4.</span> <span class="nav-text">关键收获</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Yue</p>
+  <div class="site-description" itemprop="description">Personal notes on DevOps, infrastructure, and backend engineering</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/YueBlog/archives/">
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/YueBlog/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/YueBlog/tags/">
+        <span class="site-state-item-count">24</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whymaomao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whymaomao" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+<div class="sidebar-widget sidebar-categories">
+  <div class="sidebar-widget-title">
+    <i class="fa fa-th"></i> Categories
+  </div>
+  <ul class="sidebar-widget-list">
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/ARTS/">ARTS</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Database/">Database</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Debug/">Debug</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/DevOps/">DevOps</a>
+      <span class="sidebar-widget-count">5</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Java/">Java</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Testing/">Testing</a>
+      <span class="sidebar-widget-count">2</span>
+    </li>
+    
+  </ul>
+</div>
+
+
+
+<div class="sidebar-widget sidebar-tags">
+  <div class="sidebar-widget-title">
+    <i class="fa fa-tags"></i> Tags
+  </div>
+  <ul class="sidebar-widget-list sidebar-tags-list">
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/linux/">linux</a>
+      <span class="sidebar-widget-count">3</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/performance/">performance</a>
+      <span class="sidebar-widget-count">3</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/security/">security</a>
+      <span class="sidebar-widget-count">2</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/ssh/">ssh</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/provider/">provider</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/java/">java</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/testing/">testing</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/jmeter/">jmeter</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/monitoring/">monitoring</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/database/">database</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/influxdb/">influxdb</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/container/">container</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/docker/">docker</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/command/">command</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/shell/">shell</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/bash/">bash</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/iac/">iac</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/infrastructure/">infrastructure</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/terraform/">terraform</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/troubleshooting/">troubleshooting</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/load-testing/">load-testing</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/weekly/">weekly</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/review/">review</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/algorithm/">algorithm</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+  </ul>
+</div>
+
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2026/03/27/2026-03-27-azure-sql-high-dtu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
+      <meta itemprop="name" content="Yue">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yue's Blog">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Azure SQL 高 DTU 排查：Log IO 饱和 | Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Azure SQL 高 DTU 排查：Log IO 饱和
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-03-27 14:20:00 / Modified: 15:27:03" itemprop="dateCreated datePublished" datetime="2026-03-27T14:20:00+08:00">2026-03-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/YueBlog/categories/Debug/" itemprop="url" rel="index"><span itemprop="name">Debug</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p><strong>来源:</strong> Work RCA | <strong>日期:</strong> 2026-03-27</p>
+</blockquote>
+<h2 id="Azure-SQL-WAL-机制"><a href="#Azure-SQL-WAL-机制" class="headerlink" title="Azure SQL WAL 机制"></a>Azure SQL WAL 机制</h2><p>Azure SQL 采用 Write-Ahead Logging（WAL）：每次 INSERT/UPDATE/DELETE 不直接写数据文件，而是<strong>先写事务日志</strong>（<code>.ldf</code>），由后台异步刷入数据文件（<code>.mdf</code>）。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Java INSERT</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">事务日志 (.ldf)   ← 同步写入，阻塞调用线程</span><br><span class="line">    │</span><br><span class="line">    ▼</span><br><span class="line">数据文件 (.mdf)   ← 后台异步写入</span><br></pre></td></tr></table></figure>
+
+<p>DTU 的计算公式：</p>
+<p><strong>DTU% = max(CPU%, Log IO%, Data IO%)</strong></p>
+<p>因此，**单独 Log IO 饱和就足以将 DTU 推到 100%**，即使 CPU 和 Data IO 均正常。<br>大文件分块写入时，每个 64 KB chunk 触发一次同步日志写入，<code>N</code> 个 chunk = <code>N</code> 次串行阻塞，Log IO 随文件大小线性增长。</p>
+<h2 id="案例：确认是-Log-IO-主导"><a href="#案例：确认是-Log-IO-主导" class="headerlink" title="案例：确认是 Log IO 主导"></a>案例：确认是 Log IO 主导</h2><h3 id="Step-1-—-Azure-Portal-观察"><a href="#Step-1-—-Azure-Portal-观察" class="headerlink" title="Step 1 — Azure Portal 观察"></a>Step 1 — Azure Portal 观察</h3><p>Azure Portal Query Performance Insight 显示，DTU 峰值时段 **Log IO % ≈ DTU %**，Data IO 和 CPU 均正常：</p>
+<table>
+<thead>
+<tr>
+<th>指标</th>
+<th>峰值时段读数</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DTU %</td>
+<td><strong>~100%</strong></td>
+</tr>
+<tr>
+<td>Log IO %</td>
+<td><strong>~100%</strong></td>
+</tr>
+<tr>
+<td>Data IO %</td>
+<td>&lt; 10%</td>
+</tr>
+<tr>
+<td>CPU %</td>
+<td>&lt; 20%</td>
+</tr>
+</tbody></table>
+<p>结论：瓶颈在写操作，直接进 Query Store 排查。</p>
+<h3 id="Step-2-—-Query-Store-按-Log-Bytes-排序"><a href="#Step-2-—-Query-Store-按-Log-Bytes-排序" class="headerlink" title="Step 2 — Query Store 按 Log Bytes 排序"></a>Step 2 — Query Store 按 Log Bytes 排序</h3><p>在问题时间窗口内执行排查 SQL，Top 5 结果（表名已脱敏）：</p>
+<table>
+<thead>
+<tr>
+<th>exec_count</th>
+<th>total_log_bytes</th>
+<th>max_log_bytes_one_exec</th>
+<th>query_text</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>487</strong></td>
+<td><strong>68,348,408</strong></td>
+<td>144,524</td>
+<td><code>INSERT INTO [FILE_CHUNK_STORE] ([CONTENT],[LENGTH],[OFFSET],[FILE_ID]) VALUES (@P0,@P1,@P2,@P3)</code></td>
+</tr>
+<tr>
+<td>12</td>
+<td>269,160</td>
+<td>123,052</td>
+<td><code>DELETE TOP (4999) FROM [DEPLOY_HISTORY] WHERE [DATE] &lt;= @P0</code></td>
+</tr>
+<tr>
+<td>38</td>
+<td>122,792</td>
+<td>5,132</td>
+<td><code>UPDATE [DEPLOY_STATE] SET [STATE]=@P0,[UPDATE]=@P1 WHERE DEVICE_ID=@P2 AND RES_ID=@P3</code></td>
+</tr>
+<tr>
+<td>105</td>
+<td>108,882</td>
+<td>6,654</td>
+<td><code>UPDATE [FILE_META] SET [CDN_URI]=@P0,[SIZE]=@P1 WHERE [FILE_ID]=@P2</code></td>
+</tr>
+<tr>
+<td>45</td>
+<td>68,492</td>
+<td>2,868</td>
+<td><code>INSERT INTO [DEPLOY_HISTORY] ([ARG1],[ARG2],[AUTHOR],...) VALUES (...)</code></td>
+</tr>
+</tbody></table>
+<p>第一行高度可疑：487 次 INSERT，每次写入 ~64 KB blob，total_log_bytes 远超其他语句之和。</p>
+<h3 id="Step-3-—-贡献度分析"><a href="#Step-3-—-贡献度分析" class="headerlink" title="Step 3 — 贡献度分析"></a>Step 3 — 贡献度分析</h3><p>用 CTE 精确计算目标语句占整个时间窗口总 Log IO 的比例（将 <code>@target_query_id</code> 替换为 Step 2 中找到的 <code>query_id</code>）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@start_time</span> datetime2 <span class="operator">=</span> <span class="string">&#x27;2026-03-09T05:00:00&#x27;</span>;</span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@end_time</span>   datetime2 <span class="operator">=</span> <span class="string">&#x27;2026-03-09T06:00:00&#x27;</span>;</span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@target_query_id</span> <span class="type">INT</span> <span class="operator">=</span> <span class="number">3799</span>;  <span class="comment">-- from Step 2</span></span><br><span class="line"></span><br><span class="line">;<span class="keyword">WITH</span> all_log <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">SUM</span>(rs.count_executions <span class="operator">*</span> rs.avg_log_bytes_used) <span class="keyword">AS</span> total_log_bytes_all</span><br><span class="line">    <span class="keyword">FROM</span> sys.query_store_runtime_stats rs</span><br><span class="line">    <span class="keyword">JOIN</span> sys.query_store_runtime_stats_interval rsi</span><br><span class="line">        <span class="keyword">ON</span> rs.runtime_stats_interval_id <span class="operator">=</span> rsi.runtime_stats_interval_id</span><br><span class="line">    <span class="keyword">WHERE</span> rsi.end_time <span class="operator">&gt;</span> <span class="variable">@start_time</span> <span class="keyword">AND</span> rsi.start_time <span class="operator">&lt;</span> <span class="variable">@end_time</span></span><br><span class="line">),</span><br><span class="line">q_log <span class="keyword">AS</span> (</span><br><span class="line">    <span class="keyword">SELECT</span> <span class="built_in">SUM</span>(rs.count_executions <span class="operator">*</span> rs.avg_log_bytes_used) <span class="keyword">AS</span> total_log_bytes_q</span><br><span class="line">    <span class="keyword">FROM</span> sys.query_store_runtime_stats rs</span><br><span class="line">    <span class="keyword">JOIN</span> sys.query_store_runtime_stats_interval rsi</span><br><span class="line">        <span class="keyword">ON</span> rs.runtime_stats_interval_id <span class="operator">=</span> rsi.runtime_stats_interval_id</span><br><span class="line">    <span class="keyword">JOIN</span> sys.query_store_plan p</span><br><span class="line">        <span class="keyword">ON</span> rs.plan_id <span class="operator">=</span> p.plan_id</span><br><span class="line">    <span class="keyword">WHERE</span> p.query_id <span class="operator">=</span> <span class="variable">@target_query_id</span></span><br><span class="line">      <span class="keyword">AND</span> rsi.end_time <span class="operator">&gt;</span> <span class="variable">@start_time</span> <span class="keyword">AND</span> rsi.start_time <span class="operator">&lt;</span> <span class="variable">@end_time</span></span><br><span class="line">)</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">    q.total_log_bytes_q,</span><br><span class="line">    a.total_log_bytes_all,</span><br><span class="line">    <span class="built_in">CAST</span>(<span class="number">100.0</span> <span class="operator">*</span> q.total_log_bytes_q <span class="operator">/</span> <span class="built_in">NULLIF</span>(a.total_log_bytes_all, <span class="number">0</span>) <span class="keyword">AS</span> <span class="type">decimal</span>(<span class="number">10</span>,<span class="number">2</span>)) <span class="keyword">AS</span> pct_contribution</span><br><span class="line"><span class="keyword">FROM</span> q_log q <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> all_log a;</span><br></pre></td></tr></table></figure>
+
+<p>结果：</p>
+<table>
+<thead>
+<tr>
+<th>total_log_bytes (该语句)</th>
+<th>total_log_bytes (全部语句)</th>
+<th>pct_contribution</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>68,348,408</td>
+<td>69,295,254</td>
+<td><strong>98.63%</strong></td>
+</tr>
+</tbody></table>
+<p>单条 INSERT 贡献了 <strong>98.63%</strong> 的事务日志写入，定位完成。</p>
+<p><strong>如何判读 pct_contribution：</strong></p>
+<table>
+<thead>
+<tr>
+<th>pct_contribution</th>
+<th>判断</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>≥ 80%</td>
+<td>单语句主导，优先处理该语句</td>
+</tr>
+<tr>
+<td>40% – 80%</td>
+<td>显著贡献，但需结合其他语句一起看</td>
+</tr>
+<tr>
+<td>&lt; 40%</td>
+<td>分散型写压力，没有单一热点，考虑整体写入频率或升级 DTU</td>
+</tr>
+</tbody></table>
+<h2 id="如何判断是-High-Data-IO-问题"><a href="#如何判断是-High-Data-IO-问题" class="headerlink" title="如何判断是 High Data IO 问题"></a>如何判断是 High Data IO 问题</h2><p>DTU% = max(CPU%, Log IO%, Data IO%) 中，<strong>Data IO</strong> 代表从数据文件（<code>.mdf</code>）读取页面的压力。以下信号提示 Data IO 是瓶颈：</p>
+<h3 id="Azure-Portal-信号"><a href="#Azure-Portal-信号" class="headerlink" title="Azure Portal 信号"></a>Azure Portal 信号</h3><table>
+<thead>
+<tr>
+<th>指标</th>
+<th>Log IO 主导</th>
+<th>Data IO 主导</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Log IO %</td>
+<td>接近 DTU%</td>
+<td>远低于 DTU%</td>
+</tr>
+<tr>
+<td>Data IO %</td>
+<td>远低于 DTU%</td>
+<td>接近 DTU%</td>
+</tr>
+<tr>
+<td>CPU %</td>
+<td>正常</td>
+<td>可能偏高（排序、哈希）</td>
+</tr>
+<tr>
+<td>典型操作</td>
+<td>INSERT/UPDATE/DELETE</td>
+<td>SELECT 全表扫描、大范围读</td>
+</tr>
+</tbody></table>
+<p>当 Azure Portal Query Performance Insight 显示 <strong>Data IO ≈ DTU%，而 Log IO 很低</strong>，说明是读操作在消耗 DTU。</p>
+<h3 id="Query-Store-诊断：按物理读排序"><a href="#Query-Store-诊断：按物理读排序" class="headerlink" title="Query Store 诊断：按物理读排序"></a>Query Store 诊断：按物理读排序</h3><p>Log IO 用 <code>avg_log_bytes_used</code>，Data IO 改用 <code>avg_physical_io_reads</code>（物理页面读次数）：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@start_time</span> datetime2 <span class="operator">=</span> <span class="string">&#x27;2026-03-09T05:00:00&#x27;</span>;</span><br><span class="line"><span class="keyword">DECLARE</span> <span class="variable">@end_time</span>   datetime2 <span class="operator">=</span> <span class="string">&#x27;2026-03-09T06:00:00&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> TOP <span class="number">30</span></span><br><span class="line">  q.query_id,</span><br><span class="line">  <span class="built_in">SUM</span>(rs.count_executions)                          <span class="keyword">AS</span> exec_count,</span><br><span class="line">  <span class="built_in">SUM</span>(rs.count_executions <span class="operator">*</span> rs.avg_physical_io_reads) <span class="keyword">AS</span> total_physical_reads,</span><br><span class="line">  <span class="built_in">MAX</span>(rs.max_physical_io_reads)                     <span class="keyword">AS</span> max_physical_reads_one_exec,</span><br><span class="line">  <span class="built_in">SUM</span>(rs.count_executions <span class="operator">*</span> rs.avg_logical_io_reads)  <span class="keyword">AS</span> total_logical_reads,</span><br><span class="line">  <span class="keyword">LEFT</span>(REPLACE(t.query_sql_text, <span class="type">CHAR</span>(<span class="number">10</span>), <span class="string">&#x27; &#x27;</span>), <span class="number">300</span>) <span class="keyword">AS</span> query_text</span><br><span class="line"><span class="keyword">FROM</span> sys.query_store_runtime_stats rs</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_runtime_stats_interval rsi</span><br><span class="line">  <span class="keyword">ON</span> rs.runtime_stats_interval_id <span class="operator">=</span> rsi.runtime_stats_interval_id</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_plan p <span class="keyword">ON</span> rs.plan_id <span class="operator">=</span> p.plan_id</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_query q <span class="keyword">ON</span> p.query_id <span class="operator">=</span> q.query_id</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_query_text t <span class="keyword">ON</span> q.query_text_id <span class="operator">=</span> t.query_text_id</span><br><span class="line"><span class="keyword">WHERE</span> rsi.end_time <span class="operator">&gt;</span> <span class="variable">@start_time</span></span><br><span class="line">  <span class="keyword">AND</span> rsi.start_time <span class="operator">&lt;</span> <span class="variable">@end_time</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> q.query_id, p.plan_id, t.query_sql_text</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">SUM</span>(rs.count_executions <span class="operator">*</span> rs.avg_physical_io_reads) <span class="operator">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> total_physical_reads <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="典型-Data-IO-高的输出特征"><a href="#典型-Data-IO-高的输出特征" class="headerlink" title="典型 Data IO 高的输出特征"></a>典型 Data IO 高的输出特征</h3><table>
+<thead>
+<tr>
+<th>query_id</th>
+<th>exec_count</th>
+<th>total_physical_reads</th>
+<th>total_logical_reads</th>
+<th>query_text</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1021</td>
+<td>3</td>
+<td><strong>182,450</strong></td>
+<td>198,320</td>
+<td><code>SELECT * FROM DEVICE_STATUS WHERE ...</code></td>
+</tr>
+<tr>
+<td>874</td>
+<td>120</td>
+<td><strong>54,300</strong></td>
+<td>61,200</td>
+<td><code>SELECT d.*, r.* FROM DEVICE d JOIN RESOURCE r ON ...</code></td>
+</tr>
+<tr>
+<td>302</td>
+<td>1</td>
+<td><strong>38,900</strong></td>
+<td>38,900</td>
+<td><code>SELECT COUNT(*) FROM EWDEPLOY_HISTO</code></td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>total_physical_reads</code> 高 → 数据不在 Buffer Pool，频繁从磁盘读取 → <strong>缺索引或 Buffer Pool 太小</strong></li>
+<li><code>total_logical_reads</code> 远大于 <code>total_physical_reads</code> → 数据在内存但读取页数过多 → <strong>全表扫描或索引效率差</strong></li>
+<li><code>exec_count</code> 低但 <code>physical_reads</code> 极高 → 单次查询扫描海量数据 → <strong>缺少合适索引</strong></li>
+</ul>
+<h3 id="常见根因"><a href="#常见根因" class="headerlink" title="常见根因"></a>常见根因</h3><table>
+<thead>
+<tr>
+<th>现象</th>
+<th>根因</th>
+<th>方向</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>SELECT *</code> + 无 WHERE 索引</td>
+<td>全表扫描，读取所有页</td>
+<td>添加覆盖索引</td>
+</tr>
+<tr>
+<td>JOIN 两张大表无索引列</td>
+<td>Hash Join 需读大量页</td>
+<td>为 JOIN 列加索引</td>
+</tr>
+<tr>
+<td>查询返回大结果集后在应用层过滤</td>
+<td>不必要的数据页读取</td>
+<td>下推过滤条件到 SQL</td>
+</tr>
+<tr>
+<td>Buffer Pool 命中率低</td>
+<td>DTU 层级太低，内存不足</td>
+<td>升级 DTU 或加索引减少扫描范围</td>
+</tr>
+</tbody></table>
+<h2 id="关键收获"><a href="#关键收获" class="headerlink" title="关键收获"></a>关键收获</h2><ul>
+<li><p><strong>Log IO = DTU 时，直接排查写操作</strong>（INSERT/UPDATE/DELETE），优化 SELECT 毫无意义。</p>
+</li>
+<li><p><strong>Query Store 是最快的诊断工具</strong>。一条 SQL 按 <code>total_log_bytes DESC</code> 排序，5 分钟内定位最大 Log IO 语句，无需任何应用层埋点：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> TOP <span class="number">30</span></span><br><span class="line">  <span class="built_in">SUM</span>(rs.count_executions <span class="operator">*</span> rs.avg_log_bytes_used) <span class="keyword">AS</span> total_log_bytes,</span><br><span class="line">  <span class="keyword">LEFT</span>(t.query_sql_text, <span class="number">200</span>) <span class="keyword">AS</span> query_text</span><br><span class="line"><span class="keyword">FROM</span> sys.query_store_runtime_stats rs</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_runtime_stats_interval rsi <span class="keyword">ON</span> ...</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_plan p <span class="keyword">ON</span> ...</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_query q <span class="keyword">ON</span> ...</span><br><span class="line"><span class="keyword">JOIN</span> sys.query_store_query_text t <span class="keyword">ON</span> ...</span><br><span class="line"><span class="keyword">WHERE</span> rsi.end_time <span class="operator">&gt;</span> <span class="variable">@start</span> <span class="keyword">AND</span> rsi.start_time <span class="operator">&lt;</span> <span class="variable">@end</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> q.query_id, p.plan_id, t.query_sql_text</span><br><span class="line"><span class="keyword">HAVING</span> <span class="built_in">SUM</span>(rs.count_executions <span class="operator">*</span> rs.avg_log_bytes_used) <span class="operator">&gt;</span> <span class="number">0</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> total_log_bytes <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>大文件分块写入数据库是高风险操作</strong>。每个 64 KB chunk 是一次独立的事务日志写入，Log IO = 文件大小 × chunk 数。文件大小 × locale 扇出数 = 实际写入放大倍数（如 4 MB × 12 locale = 单次请求 ~68 MB log）。</p>
+</li>
+<li><p><strong>CDN 上传成功 ≠ DB 写入已跳过</strong>。必须逐平台验证 CDN skip 条件的覆盖范围，不同 OS 类型可能走不同分支，遗漏平台导致仍执行 DB 写入。</p>
+</li>
+<li><p><strong>并发上传 DTU 超线性增长</strong>。Azure SQL 的事务日志只有单个串行写入器（<code>WRITELOG</code>），两路并发触发写入竞争，叠加行锁争用，实际 DTU 远超 2×。单用户测试严重低估并发 DTU 风险。</p>
+</li>
+<li><p><strong>高 DTU 必有具体触发动作</strong>。DTU 峰值时间戳对齐用户操作日志，几乎总能找到明确的触发事件。先找”谁在那个时刻做了什么”，再看 Query Store 确认 SQL 层证据。</p>
+</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/YueBlog/tags/performance/" rel="tag"><i class="fa fa-tag"></i> performance</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/YueBlog/2024/09/13/provider/" rel="prev" title="provider">
+                  <i class="fa fa-angle-left"></i> provider
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2026</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Yue</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
+<script src="/YueBlog/js/comments.js"></script><script src="/YueBlog/js/utils.js"></script><script src="/YueBlog/js/motion.js"></script><script src="/YueBlog/js/next-boot.js"></script>
+
+  
+
+
+
+
+  <script src="/YueBlog/js/third-party/pace.js"></script>
+
+
+  
+
+
+
+
+
+</body>
+</html>

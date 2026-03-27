@@ -124,13 +124,13 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/YueBlog/archives/">
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/YueBlog/categories/">
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
@@ -159,6 +159,11 @@
     
     <li class="sidebar-widget-item">
       <a href="/YueBlog/categories/Database/">Database</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Debug/">Debug</a>
       <span class="sidebar-widget-count">1</span>
     </li>
     
@@ -194,13 +199,18 @@
     </li>
     
     <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/performance/">performance</a>
+      <span class="sidebar-widget-count">3</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
       <a href="/YueBlog/tags/security/">security</a>
       <span class="sidebar-widget-count">2</span>
     </li>
     
     <li class="sidebar-widget-item">
-      <a href="/YueBlog/tags/performance/">performance</a>
-      <span class="sidebar-widget-count">2</span>
+      <a href="/YueBlog/tags/ssh/">ssh</a>
+      <span class="sidebar-widget-count">1</span>
     </li>
     
     <li class="sidebar-widget-item">
@@ -214,7 +224,12 @@
     </li>
     
     <li class="sidebar-widget-item">
-      <a href="/YueBlog/tags/ssh/">ssh</a>
+      <a href="/YueBlog/tags/testing/">testing</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/jmeter/">jmeter</a>
       <span class="sidebar-widget-count">1</span>
     </li>
     
@@ -230,16 +245,6 @@
     
     <li class="sidebar-widget-item">
       <a href="/YueBlog/tags/influxdb/">influxdb</a>
-      <span class="sidebar-widget-count">1</span>
-    </li>
-    
-    <li class="sidebar-widget-item">
-      <a href="/YueBlog/tags/testing/">testing</a>
-      <span class="sidebar-widget-count">1</span>
-    </li>
-    
-    <li class="sidebar-widget-item">
-      <a href="/YueBlog/tags/jmeter/">jmeter</a>
       <span class="sidebar-widget-count">1</span>
     </li>
     
@@ -323,6 +328,111 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/01/29/bash-shell-script/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
+      <meta itemprop="name" content="Yue">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yue's Blog">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/YueBlog/2024/01/29/bash-shell-script/" class="post-title-link" itemprop="url">bash shell script</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-01-29 08:57:07" itemprop="dateCreated datePublished" datetime="2024-01-29T08:57:07+08:00">2024-01-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-27 14:09:56" itemprop="dateModified" datetime="2026-03-27T14:09:56+08:00">2026-03-27</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/YueBlog/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Shell-script-summary"><a href="#Shell-script-summary" class="headerlink" title="Shell script summary"></a>Shell script summary</h2><h3 id="jq-command-to-parse-json-file"><a href="#jq-command-to-parse-json-file" class="headerlink" title="jq command to parse json file"></a>jq command to parse json file</h3><p>below is my json file</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;products&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;productName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xxxx1&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;productToken&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xxxx1&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;productName&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xxxx2&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;productToken&quot;</span><span class="punctuation">:</span> <span class="string">&quot;xxxx2&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span> </span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>Functionality to loop through the json file, find the target productName and print the corresponding productToken</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">while read -r product</span><br><span class="line">do</span><br><span class="line">  existing_product=$(echo &quot;$product&quot; | jq -r .productName)</span><br><span class="line">  if [[ &quot;$&#123;productName&#125;&quot; == &quot;$&#123;existing_product&#125;&quot; ]]; then</span><br><span class="line">    echo &quot;found the product name&quot;</span><br><span class="line">    productToken=$(echo &quot;$product&quot; | jq -r .productToken)</span><br><span class="line">    echo $productToken</span><br><span class="line">    echo &quot;productToken=$&#123;productToken&#125;&quot; &gt;&gt; unified-agent.config</span><br><span class="line">  fi</span><br><span class="line">done &lt; &lt;(jq -c &#x27;.products[]&#x27; product.json)</span><br></pre></td></tr></table></figure>
+
+<h3 id="curl-command"><a href="#curl-command" class="headerlink" title="curl command"></a>curl command</h3><p>send curl command and write response to a file</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o response.txt -X POST $&#123;https_url&#125; -H &quot;Content-Type: application/json&quot; -d &#x27;&#123;&quot;requestType&quot;: &quot;&#x27;$&#123;request_type&#125;&#x27;&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure>
+
+<h3 id="parallel"><a href="#parallel" class="headerlink" title="parallel"></a>parallel</h3><h3 id="chroot-jail"><a href="#chroot-jail" class="headerlink" title="chroot jail"></a>chroot jail</h3><p>A chroot (short for change root) is a Unix operation that changes the apparent root directory to the one specified by the user.<br>Chroot jail is used to create a limited sandbox for a process to run in. This means a process cannot maliciously change data outside the prescribed directory tree.</p>
+<ol>
+<li>create a directory chrootjail<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir chrootjail</span><br></pre></td></tr></table></figure></li>
+<li>use ldd command to find out the shared libraries required by a program</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ldd /bin/bash</span>                                                                                                                                             </span><br><span class="line">	linux-vdso.so.1 (0x00007ffee4336000)</span><br><span class="line">	libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f3e43045000)</span><br><span class="line">	libc.so.6 =&gt; /lib/libc.so.6 (0x00007f3e42e5b000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00007f3e43050000)</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ldd /bin/ls</span>                                                                                                                                               </span><br><span class="line">	linux-vdso.so.1 (0x00007fff883b2000)</span><br><span class="line">	libc.so.6 =&gt; /lib/libc.so.6 (0x00007f20bbd75000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00007f20bbf64000)	</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>need to copy these shared libraries and bin executable file into chrootjail directory</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[ /chrootjail ]$ cp /bin/bash bin/  </span><br><span class="line">cp /lib/libdl.so.2 lib/ </span><br><span class="line">cp /lib64/ld-linux-x86-64.so.2 lib64/ </span><br><span class="line">cp /lib/libc.so.6 lib/  </span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>go to chrootjail and run chroot command, then we will go to chroot jail</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ /chrootjail ]$ chroot .                                                                                                                                                  </span><br><span class="line">bash: warning: setlocale: LC_ALL: cannot change locale (en_US)</span><br><span class="line">bash-5.0# </span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
