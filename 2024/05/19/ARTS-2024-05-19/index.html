@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":350},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":350},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
 
     <meta name="description" content="AlgorithmLeetCode 1020 Number of EnclavesThis is a typical Graph problem. And I used the BFS algorithm to solve it.Searched all the conncted “1” in the array, if the connected area has a “1” on the bo">
 <meta property="og:type" content="article">
@@ -151,6 +151,172 @@
         <a href="https://github.com/whymaomao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whymaomao" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
       </span>
   </div>
+
+<div class="sidebar-widget sidebar-categories">
+  <div class="sidebar-widget-title">
+    <i class="fa fa-th"></i> Categories
+  </div>
+  <ul class="sidebar-widget-list">
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/ARTS/">ARTS</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Database/">Database</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/DevOps/">DevOps</a>
+      <span class="sidebar-widget-count">5</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Java/">Java</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/categories/Testing/">Testing</a>
+      <span class="sidebar-widget-count">2</span>
+    </li>
+    
+  </ul>
+</div>
+
+
+
+<div class="sidebar-widget sidebar-tags">
+  <div class="sidebar-widget-title">
+    <i class="fa fa-tags"></i> Tags
+  </div>
+  <ul class="sidebar-widget-list sidebar-tags-list">
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/linux/">linux</a>
+      <span class="sidebar-widget-count">3</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/security/">security</a>
+      <span class="sidebar-widget-count">2</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/performance/">performance</a>
+      <span class="sidebar-widget-count">2</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/provider/">provider</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/java/">java</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/ssh/">ssh</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/monitoring/">monitoring</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/database/">database</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/influxdb/">influxdb</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/testing/">testing</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/jmeter/">jmeter</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/container/">container</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/docker/">docker</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/command/">command</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/shell/">shell</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/bash/">bash</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/iac/">iac</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/infrastructure/">infrastructure</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/terraform/">terraform</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/troubleshooting/">troubleshooting</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/load-testing/">load-testing</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/weekly/">weekly</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/review/">review</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/algorithm/">algorithm</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+  </ul>
+</div>
+
 
         </div>
       </div>
