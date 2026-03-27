@@ -12,17 +12,21 @@
 
 <link rel="stylesheet" href="/YueBlog/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":350},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
+<meta property="og:type" content="website">
 <meta property="og:title" content="Yue&#39;s Blog">
 <meta property="og:url" content="https://whymaomao.github.io/YueBlog/index.html">
 <meta property="og:site_name" content="Yue&#39;s Blog">
+<meta property="og:description" content="Personal notes on DevOps, infrastructure, and backend engineering">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Yue">
 <meta name="twitter:card" content="summary">
@@ -58,6 +62,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -68,6 +75,7 @@
       <h1 class="site-title">Yue's Blog</h1>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Engineering Notes</p>
   </div>
 
   <div class="site-nav-right">
@@ -78,6 +86,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/YueBlog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/YueBlog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-tags"><a href="/YueBlog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
 
 
 
@@ -106,18 +118,23 @@
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Yue</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">Personal notes on DevOps, infrastructure, and backend engineering</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/YueBlog/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whymaomao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whymaomao" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
         </div>
       </div>
@@ -139,6 +156,203 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/09/13/provider/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
+      <meta itemprop="name" content="Yue">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yue's Blog">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/YueBlog/2024/09/13/provider/" class="post-title-link" itemprop="url">provider</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-09-13 09:24:30" itemprop="dateCreated datePublished" datetime="2024-09-13T09:24:30+08:00">2024-09-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-27 13:43:05" itemprop="dateModified" datetime="2026-03-27T13:43:05+08:00">2026-03-27</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="1-Installing-Providers"><a href="#1-Installing-Providers" class="headerlink" title="1. Installing Providers"></a><strong>1. Installing Providers</strong></h3><p>Below is the static way to install the BC and BCFIPS providers</p>
+<ol>
+<li>Put the provider jar in jdk17 java classpath: /opt/sas/sw/jre/lib/</li>
+<li>Register the provider by configuring a security proeprties configuration file before running the java application. CEM defined the security provider in java.security file, file is located in /opt/sas/sw/jre/conf/security/java.security.</li>
+<li>Below declares the providers and specifies the preference order n. The order is the order in which providers are searched for requested algorithms when no specific provider is requested:</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">#</span><span class="language-bash">FIPS ENABLED</span></span><br><span class="line">security.provider.1=SUN</span><br><span class="line">security.provider.2=SunRsaSign</span><br><span class="line">security.provider.3=SunEC</span><br><span class="line">security.provider.4=SunJSSE</span><br><span class="line">security.provider.5=SunJCE</span><br><span class="line">security.provider.6=BCFIPS</span><br><span class="line">security.provider.7=SunJGSS</span><br><span class="line">security.provider.8=SunSASL</span><br><span class="line">security.provider.9=XMLDSig</span><br><span class="line">security.provider.10=SunPCSC</span><br><span class="line">security.provider.11=JdkLDAP</span><br><span class="line">security.provider.12=JdkSASL</span><br><span class="line">security.provider.13=SunPKCS11</span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>add fucntion to list what providers have been added as below:</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Provider[] providers= Security.getProviders();</span><br><span class="line"><span class="keyword">for</span>(Provider provider : providers) &#123;</span><br><span class="line">    System.out.println(<span class="string">&quot;Security Provider is &quot;</span> + provider.getName() + <span class="string">&quot; ,class name is &quot;</span> + provider.getClass().getName());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="2-Provider-Load-Flow"><a href="#2-Provider-Load-Flow" class="headerlink" title="2. Provider Load Flow"></a><strong>2. Provider Load Flow</strong></h3><p>java.security.Security has a static code block to read security.properties file and load the property values into props object</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">initialize</span><span class="params">()</span> &#123;</span><br><span class="line">    props = <span class="keyword">new</span> <span class="title class_">Properties</span>();</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">loadedProps</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    <span class="type">boolean</span> <span class="variable">overrideAll</span> <span class="operator">=</span> <span class="literal">false</span>;</span><br><span class="line">    </span><br><span class="line">            <span class="comment">// first load the system properties file</span></span><br><span class="line">            <span class="comment">// to determine the value of security.overridePropertiesFile</span></span><br><span class="line">            <span class="type">File</span> <span class="variable">propFile</span> <span class="operator">=</span> securityPropFile(<span class="string">&quot;java.security&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (propFile.exists()) &#123;</span><br><span class="line">                <span class="type">InputStream</span> <span class="variable">is</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    <span class="type">FileInputStream</span> <span class="variable">fis</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">FileInputStream</span>(propFile);</span><br><span class="line">                    is = <span class="keyword">new</span> <span class="title class_">BufferedInputStream</span>(fis);</span><br><span class="line">                    props.load(is);</span><br><span class="line">                    loadedProps = <span class="literal">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">         &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
+      <meta itemprop="name" content="Yue">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yue's Blog">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/YueBlog/2024/08/05/Terraform/" class="post-title-link" itemprop="url">Terraform</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2024-08-05 17:46:28 / Modified: 17:47:06" itemprop="dateCreated datePublished" datetime="2024-08-05T17:46:28+08:00">2024-08-05</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>The <code>terraform plan</code> command is a crucial part of Terraform’s workflow. It allows you to preview the changes that Terraform will make to your infrastructure before actually applying them. Here’s a step-by-step flow of what happens when you run <code>terraform plan</code>:</p>
+<h3 id="1-Load-Configuration"><a href="#1-Load-Configuration" class="headerlink" title="1. Load Configuration"></a><strong>1. Load Configuration</strong></h3><ul>
+<li><strong>Read Configuration Files</strong>: Terraform reads the <code>.tf</code> and <code>.tf.json</code> files in your working directory to understand the desired state of your infrastructure.</li>
+<li><strong>Parse and Validate Configuration</strong>: Terraform parses the configuration files and performs initial validation to check for syntax errors or misconfigurations.</li>
+</ul>
+<h3 id="2-Load-State"><a href="#2-Load-State" class="headerlink" title="2. Load State"></a><strong>2. Load State</strong></h3><ul>
+<li><strong>Read State File</strong>: Terraform loads the current state file (<code>terraform.tfstate</code>) to understand the existing state of your infrastructure. This state file contains information about the resources that Terraform manages and their current configuration.</li>
+<li><strong>Synchronize with Backend</strong>: If you’re using a remote backend (like AWS S3, Azure Blob Storage, etc.), Terraform will fetch the latest state from the backend.</li>
+</ul>
+<h3 id="3-Refresh-State"><a href="#3-Refresh-State" class="headerlink" title="3. Refresh State"></a><strong>3. Refresh State</strong></h3><ul>
+<li><strong>Query Infrastructure</strong>: Terraform queries the actual state of resources in the cloud provider (e.g., Azure, AWS) to get the current state of resources that are already deployed.</li>
+<li><strong>Update State File</strong>: The state file is updated with the current state information. This step ensures that Terraform’s view of the infrastructure is accurate before generating a plan.</li>
+</ul>
+<h3 id="4-Generate-Execution-Plan"><a href="#4-Generate-Execution-Plan" class="headerlink" title="4. Generate Execution Plan"></a><strong>4. Generate Execution Plan</strong></h3><ul>
+<li><strong>Compare Desired and Current States</strong>: Terraform compares the desired state (as defined in your configuration files) with the current state (from the state file and actual infrastructure).</li>
+<li><strong>Create Plan</strong>: Terraform generates an execution plan that details the actions required to bring the infrastructure from its current state to the desired state. This includes creating, updating, or deleting resources.</li>
+</ul>
+<h3 id="5-Output-Plan"><a href="#5-Output-Plan" class="headerlink" title="5. Output Plan"></a><strong>5. Output Plan</strong></h3><ul>
+<li><strong>Display Plan</strong>: Terraform outputs the plan to the terminal, showing a summary of the changes that will be made. This includes:<ul>
+<li><strong>Additions</strong>: New resources that will be created.</li>
+<li><strong>Modifications</strong>: Existing resources that will be updated.</li>
+<li><strong>Deletions</strong>: Resources that will be destroyed.</li>
+</ul>
+</li>
+<li><strong>Plan Details</strong>: For each resource, Terraform shows the current state and the planned changes.</li>
+</ul>
+<h3 id="6-User-Review"><a href="#6-User-Review" class="headerlink" title="6. User Review"></a><strong>6. User Review</strong></h3><ul>
+<li><strong>Review the Plan</strong>: You review the output to ensure that the changes Terraform plans to make align with your expectations. This step is crucial to prevent unintended modifications.</li>
+</ul>
+<h3 id="7-Apply-Plan"><a href="#7-Apply-Plan" class="headerlink" title="7. Apply Plan"></a><strong>7. Apply Plan</strong></h3><ul>
+<li><strong>Manual Execution</strong>: After reviewing the plan, you can execute <code>terraform apply</code> to apply the changes. You may also apply the plan directly from a saved plan file if you use the <code>terraform apply &lt;plan-file&gt;</code> command.</li>
+</ul>
+<h3 id="Key-Points"><a href="#Key-Points" class="headerlink" title="Key Points"></a><strong>Key Points</strong></h3><ul>
+<li><strong>No Changes to Infrastructure</strong>: The <code>terraform plan</code> command does not make any changes to your infrastructure. It only generates a preview of what changes will occur if you decide to apply them.</li>
+<li><strong>Plan Files</strong>: You can save the plan to a file using the <code>-out</code> option (<code>terraform plan -out=plan.tfplan</code>) and apply it later using <code>terraform apply plan.tfplan</code>.</li>
+</ul>
+<p>By following this flow, <code>terraform plan</code> helps ensure that you understand the implications of your changes before they are applied, reducing the risk of unintended modifications to your infrastructure.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/06/14/influxDB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -148,7 +362,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -167,9 +381,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-06-14 17:55:01 / Modified: 18:09:29" itemprop="dateCreated datePublished" datetime="2024-06-14T17:55:01+08:00">2024-06-14</time>
+      <time title="Created: 2024-06-14 17:55:01" itemprop="dateCreated datePublished" datetime="2024-06-14T17:55:01+08:00">2024-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-27 13:42:52" itemprop="dateModified" datetime="2026-03-27T13:42:52+08:00">2026-03-27</time>
     </span>
 
   
@@ -196,9 +416,14 @@
 <li>follow the dashboard steps to create influxDB organization, bucket, and token</li>
 </ol>
 <h2 id="InfluxDB-CLI-Command"><a href="#InfluxDB-CLI-Command" class="headerlink" title="InfluxDB CLI Command"></a>InfluxDB CLI Command</h2><ol>
-<li>check influx user list <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">influx user list</span><br></pre></td></tr></table></figure></li>
+<li>check influx user list</li>
 </ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">influx user list</span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="InfluxDB-v2-Java-Client"><a href="#InfluxDB-v2-Java-Client" class="headerlink" title="InfluxDB v2 Java Client"></a>InfluxDB v2 Java Client</h2><p>Here we use ‘com.influxdb:influxdb-client-java:6.12.0’ to implement our java influxDB client.<br>Note: according to influxDB release note, starting from <a target="_blank" rel="noopener" href="https://github.com/influxdata/influxdb-client-java/releases">https://github.com/influxdata/influxdb-client-java/releases</a> version 7.0.0, it will only support jdk17 and later. </p>
+<h2 id="InfluxDB-v2-check-data-storage"><a href="#InfluxDB-v2-check-data-storage" class="headerlink" title="InfluxDB v2 check data storage"></a>InfluxDB v2 check data storage</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">du -sh /var/lib/influxdb/engine/data/</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -234,7 +459,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -253,9 +478,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2024-05-19 16:45:14 / Modified: 17:11:40" itemprop="dateCreated datePublished" datetime="2024-05-19T16:45:14+08:00">2024-05-19</time>
+      <time title="Created: 2024-05-19 16:45:14" itemprop="dateCreated datePublished" datetime="2024-05-19T16:45:14+08:00">2024-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2026-03-27 13:41:43" itemprop="dateModified" datetime="2026-03-27T13:41:43+08:00">2026-03-27</time>
     </span>
 
   
@@ -268,15 +499,14 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>Algorithm</strong>:</p>
-<h3 id="LeetCode-1020-Number-of-Enclaves"><a href="#LeetCode-1020-Number-of-Enclaves" class="headerlink" title="LeetCode 1020 Number of Enclaves"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-enclaves/">LeetCode 1020 Number of Enclaves</a></h3><p>This is a typical Graph problem. And I used the BFS algorithm to solve it.<br>Searched all the conncted “1” in the array, if the connected area has a “1” on the border, then it is not an enclave.<br>Else increase the count of the result. </p>
+          <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><h3 id="LeetCode-1020-Number-of-Enclaves"><a href="#LeetCode-1020-Number-of-Enclaves" class="headerlink" title="LeetCode 1020 Number of Enclaves"></a><a target="_blank" rel="noopener" href="https://leetcode.com/problems/number-of-enclaves/">LeetCode 1020 Number of Enclaves</a></h3><p>This is a typical Graph problem. And I used the BFS algorithm to solve it.<br>Searched all the conncted “1” in the array, if the connected area has a “1” on the border, then it is not an enclave.<br>Else increase the count of the result. </p>
 <p>Defined a Queue to store the connected “1” in the array, used the visited array to mark the visited “1”</p>
-<p><strong>Review</strong>:<br><a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/conference/hotcloud16/hotcloud16_burns.pdf">https://www.usenix.org/system/files/conference/hotcloud16/hotcloud16_burns.pdf</a> </p>
+<h2 id="Review"><a href="#Review" class="headerlink" title="Review"></a>Review</h2><p><a target="_blank" rel="noopener" href="https://www.usenix.org/system/files/conference/hotcloud16/hotcloud16_burns.pdf">Design Patterns for Container-Based Distributed Systems</a></p>
 <p>Design Pattern for container-based distributed systems:<br>This paper describes three types of design patterns used in container-based system:<br>single-container pattern for container management, single-node patterns of closedly cooperating-containers, and multi-node patterns for distributed algorithms </p>
 <p>TODO: used the pattern in the real project </p>
-<p><strong>Tips</strong>:<br>How to implement multiple public Ips for azure loadtest jmeter engines:<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/load-testing/concept-azure-load-testing-vnet-injection#scenario-load-test-a-public-endpoint-with-access-restrictions">https://learn.microsoft.com/en-us/azure/load-testing/concept-azure-load-testing-vnet-injection#scenario-load-test-a-public-endpoint-with-access-restrictions</a></p>
+<h2 id="Tips"><a href="#Tips" class="headerlink" title="Tips"></a>Tips</h2><p>How to implement multiple public Ips for azure loadtest jmeter engines:<br><a target="_blank" rel="noopener" href="https://learn.microsoft.com/en-us/azure/load-testing/concept-azure-load-testing-vnet-injection#scenario-load-test-a-public-endpoint-with-access-restrictions">Azure Load Testing - VNet Injection</a></p>
 <p>Deploy a NAT Gateway resource in the virtual network, and then create a load test in the private network with this NAT gateway.<br>These load test engines VMs will have the public IP address defined in NAT gateway. </p>
-<p><strong>Share</strong>:<br><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/40092">https://time.geekbang.org/column/article/40092</a> </p>
+<h2 id="Share"><a href="#Share" class="headerlink" title="Share"></a>Share</h2><p><a target="_blank" rel="noopener" href="https://time.geekbang.org/column/article/40092">Geekbang Article</a></p>
 
       
     </div>
@@ -312,7 +542,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -339,7 +569,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-05-10 11:24:09" itemprop="dateModified" datetime="2024-05-10T11:24:09+08:00">2024-05-10</time>
+      <time title="Modified: 2026-03-27 13:41:48" itemprop="dateModified" datetime="2026-03-27T13:41:48+08:00">2026-03-27</time>
     </span>
 
   
@@ -352,11 +582,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>find large files</strong> </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo find / -xdev -type f -size +100M -exec du -h &#123;&#125; + | sort -rh | less</span><br></pre></td></tr></table></figure>
+          <h3 id="Find-large-files"><a href="#Find-large-files" class="headerlink" title="Find large files"></a>Find large files</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo find / -xdev -type f -size +100M -exec du -h &#123;&#125; + | sort -rh | less</span><br></pre></td></tr></table></figure>
 
-<p><strong>how to troubleshoot the network issue</strong></p>
-
+<h3 id="How-to-troubleshoot-the-network-issue"><a href="#How-to-troubleshoot-the-network-issue" class="headerlink" title="How to troubleshoot the network issue"></a>How to troubleshoot the network issue</h3>
       
     </div>
 
@@ -391,7 +619,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -459,7 +687,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -486,7 +714,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-04-16 22:09:43" itemprop="dateModified" datetime="2024-04-16T22:09:43+08:00">2024-04-16</time>
+      <time title="Modified: 2026-03-27 13:42:44" itemprop="dateModified" datetime="2026-03-27T13:42:44+08:00">2026-03-27</time>
     </span>
 
   
@@ -499,7 +727,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>When running load tests, we encounter an issue that the server VM CPU has reached 100% after running for a while. Here are some common troubleshooting steps to identify the issue:<br>Our webserver is using tomcat as the webserver and setup in linux machine. </p>
+          <p>When running load tests, we encounter an issue that the server VM CPU has reached 100% after running for a while. Here are some common troubleshooting steps to identify the issue.<br>Our webserver is using tomcat as the webserver and setup in linux machine.</p>
 <h3 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h3><p>When issue happens, first we can use linux command <strong>uptime</strong> to check the overall status of the server.<br><strong>uptime</strong> command will show the current time, how long the server has been running, how many users are currently logged on, and the system load averages for the past 1, 5, and 15 minutes.<br>The load average is the average number of processes that are either in a runnable or uninterruptable state.</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">uptime</span></span></span><br><span class="line">    07:45:38 up  32 min,  2 users,  load average: 14.04, 5.77, 2.29</span><br></pre></td></tr></table></figure>
 <p>Take the above output as an example, it shows the server is running for 32 minutes, 2 users logged on, and the load average is 14.04 for the past 1 minute, 5.77 for the past 5 minutes, and 2.29 for the past 15 minutes.<br>which indicates that the load in server is increasing in the past 1 minute.</p>
@@ -512,7 +740,7 @@
 
 <p><img src="../images/top_pid.png" alt="img.png"></p>
 <p>As shown in the above screenshot, the main reason caused the high CPU usage is the GC threads in the java program.<br>Then we can focus on the GC logs to check the GC status.</p>
-<h3 id><a href="#" class="headerlink" title></a></h3>
+
       
     </div>
 
@@ -547,7 +775,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -574,7 +802,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-04-16 12:19:17" itemprop="dateModified" datetime="2024-04-16T12:19:17+08:00">2024-04-16</time>
+      <time title="Modified: 2026-03-27 13:42:19" itemprop="dateModified" datetime="2026-03-27T13:42:19+08:00">2026-03-27</time>
     </span>
 
   
@@ -587,8 +815,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>Generated by Chat-GPT<br>SSH public key authentication is a secure way to authenticate yourself to a remote server using asymmetric cryptography. </p>
-<h3 id="work-flow-of-SSH-public-key-authentication"><a href="#work-flow-of-SSH-public-key-authentication" class="headerlink" title="work flow of SSH public key authentication:"></a>work flow of SSH public key authentication:</h3><ol>
+          <p><em>Generated by Chat-GPT</em></p>
+<p>SSH public key authentication is a secure way to authenticate yourself to a remote server using asymmetric cryptography.</p>
+<h3 id="Work-flow-of-SSH-public-key-authentication"><a href="#Work-flow-of-SSH-public-key-authentication" class="headerlink" title="Work flow of SSH public key authentication"></a>Work flow of SSH public key authentication</h3><ol>
 <li><p>Client initiates connection:<br>The client (your local machine) initiates a connection to the server using SSH by specifying the hostname or IP address of the server and the username to authenticate as.</p>
 </li>
 <li><p>Server responds with its identification:<br>Upon receiving the connection request, the server responds with its identification, including its public host key. This key is used to verify the server’s identity and to establish a secure channel.</p>
@@ -608,8 +837,12 @@
 <li><p>Session termination:<br>When the session is complete, either the client or server can terminate the connection, closing the SSH session.<br>This detailed workflow illustrates how SSH public key authentication works to establish a secure and encrypted connection between a client and server, allowing for secure communication and remote access.</p>
 </li>
 </ol>
-<p>reference: <a target="_blank" rel="noopener" href="https://www.ssh.com/ssh/public-key-authentication">https://www.ssh.com/ssh/public-key-authentication</a><br><a target="_blank" rel="noopener" href="https://medium.com/@hellomudit/understanding-ssh-workflow-66a0e8d4bf65">https://medium.com/@hellomudit/understanding-ssh-workflow-66a0e8d4bf65</a></p>
-<h3 id="Steps-to-set-up-SSH-public-key-authentication"><a href="#Steps-to-set-up-SSH-public-key-authentication" class="headerlink" title="Steps to set up SSH public key authentication:"></a>Steps to set up SSH public key authentication:</h3><ol>
+<p><strong>References:</strong></p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://www.ssh.com/ssh/public-key-authentication">SSH Public Key Authentication</a></li>
+<li><a target="_blank" rel="noopener" href="https://medium.com/@hellomudit/understanding-ssh-workflow-66a0e8d4bf65">Understanding SSH Workflow</a></li>
+</ul>
+<h3 id="Steps-to-set-up-SSH-public-key-authentication"><a href="#Steps-to-set-up-SSH-public-key-authentication" class="headerlink" title="Steps to set up SSH public key authentication"></a>Steps to set up SSH public key authentication</h3><ol>
 <li><p>Generate SSH Key Pair:<br>On your local machine, open a terminal.<br>Use the following command to generate an SSH key pair:</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096</span><br></pre></td></tr></table></figure>
 <p>This command will prompt you to choose a location to save the key pair and optionally, a passphrase.<br>Press enter to accept the default location and press enter again to skip setting a passphrase if you want.</p>
@@ -675,7 +908,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -702,7 +935,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-05-08 08:35:38" itemprop="dateModified" datetime="2024-05-08T08:35:38+08:00">2024-05-08</time>
+      <time title="Modified: 2026-03-27 13:43:14" itemprop="dateModified" datetime="2026-03-27T13:43:14+08:00">2026-03-27</time>
     </span>
 
   
@@ -716,7 +949,7 @@
     
     <div class="post-body" itemprop="articleBody">
           <h2 id="How-to-write-a-jmeter-script-to-generete-complex-request-payload-and-parse-response-body"><a href="#How-to-write-a-jmeter-script-to-generete-complex-request-payload-and-parse-response-body" class="headerlink" title="How to write a jmeter script to generete complex request payload and parse response body"></a>How to write a jmeter script to generete complex request payload and parse response body</h2><ol>
-<li>To specify the java version to run the script: set java home as java8 or java17 </li>
+<li>To specify the java version to run the script: set java home as java8 or java17</li>
 <li>Go to the installation directory. e.g: /usr/local/Cellar/jmeter/5.6.2/libexec/bin in my mac</li>
 <li>Run the java package to launch the app <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ApacheJMeter.jar</span><br></pre></td></tr></table></figure></li>
 <li>Add a JSR223 Preprocessor or JSR223 PostProcessor in the script </li>
@@ -745,7 +978,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="How-to-extract-common-functions-into-library-for-jmeter"><a href="#How-to-extract-common-functions-into-library-for-jmeter" class="headerlink" title="How to extract common functions into library for jmeter"></a>How to extract common functions into library for jmeter</h3><p>refer to: <a target="_blank" rel="noopener" href="https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s">https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s</a></p>
+<h3 id="How-to-extract-common-functions-into-library-for-jmeter"><a href="#How-to-extract-common-functions-into-library-for-jmeter" class="headerlink" title="How to extract common functions into library for jmeter"></a>How to extract common functions into library for jmeter</h3><p>Refer to: <a target="_blank" rel="noopener" href="https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s">How to Reuse Your JMeter Code with Jar Files</a></p>
 <ol>
 <li>create a new groovy project in intellij idea</li>
 <li>open project structure in intellij app, go to Modules, add the dependency jars used for the groovy classes, here I put the dependency libs in directory “libs”<br><img src="images/project_depedency.png" alt="img.png"></li>
@@ -769,7 +1002,7 @@
 <li>Add a JSR223 Assertion to the request<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( !prev.isSuccessful() ) &#123;</span><br><span class="line">	AssertionResult.setFailure(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li>In thread group settings, set the Action as “Stop Thread” when the assertion result is failed<br><img src="images/action_after_sample_error.png" alt="img.png"></li>
 </ol>
-<h1 id="How-to-use-JSR223-sampler-processor-in-jmeter"><a href="#How-to-use-JSR223-sampler-processor-in-jmeter" class="headerlink" title="How to use JSR223 sampler/processor in jmeter:"></a>How to use JSR223 sampler/processor in jmeter:</h1><p>JSR223 stands for “Java Specification Request 223.” It’s a standard within the Java platform that defines scripting language bindings for the Java Virtual Machine (JVM).<br>Use JSR223 allows to execute custom scripts in jmeter for complex scenarios</p>
+<h2 id="How-to-use-JSR223-sampler-processor-in-jmeter"><a href="#How-to-use-JSR223-sampler-processor-in-jmeter" class="headerlink" title="How to use JSR223 sampler/processor in jmeter"></a>How to use JSR223 sampler/processor in jmeter</h2><p>JSR223 stands for “Java Specification Request 223.” It’s a standard within the Java platform that defines scripting language bindings for the Java Virtual Machine (JVM).<br>Use JSR223 allows to execute custom scripts in jmeter for complex scenarios</p>
 <ol>
 <li>JSR223 usage:<ul>
 <li>Dynamic generate request payloads, parameters or headers</li>
@@ -798,7 +1031,7 @@
 </ul>
 </li>
 </ol>
-<h1 id="How-to-debug-jmeter-test-plan"><a href="#How-to-debug-jmeter-test-plan" class="headerlink" title="How to debug jmeter test plan:"></a>How to debug jmeter test plan:</h1><ol>
+<h2 id="How-to-debug-jmeter-test-plan"><a href="#How-to-debug-jmeter-test-plan" class="headerlink" title="How to debug jmeter test plan"></a>How to debug jmeter test plan</h2><ol>
 <li>set the log level in jmeter GUI by going to Options -&gt; Log Level -&gt; DEBUG / TRACE</li>
 <li>enable log viewer by going to Options -&gt; Log Viewer</li>
 <li>Check logs in jmeter - GUI</li>
@@ -806,12 +1039,12 @@
 <li>Or change the log level in the log4j2.xml file in the bin directory of jmeter for the specific class you want to debug</li>
 <li>Add a debug sampler in the test plan to print the Jmeter variables value</li>
 </ol>
-<h1 id="How-to-record-for-simple-web-browser-requests"><a href="#How-to-record-for-simple-web-browser-requests" class="headerlink" title="How to record for simple web browser requests:"></a>How to record for simple web browser requests:</h1><ol>
+<h2 id="How-to-record-for-simple-web-browser-requests"><a href="#How-to-record-for-simple-web-browser-requests" class="headerlink" title="How to record for simple web browser requests"></a>How to record for simple web browser requests</h2><ol>
 <li>Go to browser, record the web requests and save it as .har file</li>
 <li>Go to blazemeter online site: <a target="_blank" rel="noopener" href="https://converter.blazemeter.com/">https://converter.blazemeter.com/</a></li>
 <li>Upload the har file and convert it into jmx file</li>
 <li>Download the jmx file and open it in jmeter</li>
-<li>Refactor the jmx file accordingly </li>
+<li>Refactor the jmx file accordingly</li>
 </ol>
 
       
@@ -848,7 +1081,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -875,7 +1108,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-02-20 18:23:50" itemprop="dateModified" datetime="2024-02-20T18:23:50+08:00">2024-02-20</time>
+      <time title="Modified: 2026-03-27 13:42:07" itemprop="dateModified" datetime="2026-03-27T13:42:07+08:00">2026-03-27</time>
     </span>
 
   
@@ -893,17 +1126,23 @@
 <p>Functionality to loop through the json file, find the target productName and print the corresponding productToken</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">while read -r product</span><br><span class="line">do</span><br><span class="line">  existing_product=$(echo &quot;$product&quot; | jq -r .productName)</span><br><span class="line">  if [[ &quot;$&#123;productName&#125;&quot; == &quot;$&#123;existing_product&#125;&quot; ]]; then</span><br><span class="line">    echo &quot;found the product name&quot;</span><br><span class="line">    productToken=$(echo &quot;$product&quot; | jq -r .productToken)</span><br><span class="line">    echo $productToken</span><br><span class="line">    echo &quot;productToken=$&#123;productToken&#125;&quot; &gt;&gt; unified-agent.config</span><br><span class="line">  fi</span><br><span class="line">done &lt; &lt;(jq -c &#x27;.products[]&#x27; product.json)</span><br></pre></td></tr></table></figure>
 
-<h3 id="curl-command"><a href="#curl-command" class="headerlink" title="curl command"></a>curl command</h3><p>send curl command and write response to a file </p>
+<h3 id="curl-command"><a href="#curl-command" class="headerlink" title="curl command"></a>curl command</h3><p>send curl command and write response to a file</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -o response.txt -X POST $&#123;https_url&#125; -H &quot;Content-Type: application/json&quot; -d &#x27;&#123;&quot;requestType&quot;: &quot;&#x27;$&#123;request_type&#125;&#x27;&quot;&#125;&#x27;</span><br></pre></td></tr></table></figure>
 
 <h3 id="parallel"><a href="#parallel" class="headerlink" title="parallel"></a>parallel</h3><h3 id="chroot-jail"><a href="#chroot-jail" class="headerlink" title="chroot jail"></a>chroot jail</h3><p>A chroot (short for change root) is a Unix operation that changes the apparent root directory to the one specified by the user.<br>Chroot jail is used to create a limited sandbox for a process to run in. This means a process cannot maliciously change data outside the prescribed directory tree.</p>
 <ol>
 <li>create a directory chrootjail<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir chrootjail</span><br></pre></td></tr></table></figure></li>
-<li>use ldd command to find out the shared libraries required by a program<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ldd /bin/bash</span>                                                                                                                                             </span><br><span class="line">	linux-vdso.so.1 (0x00007ffee4336000)</span><br><span class="line">	libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f3e43045000)</span><br><span class="line">	libc.so.6 =&gt; /lib/libc.so.6 (0x00007f3e42e5b000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00007f3e43050000)</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ldd /bin/ls</span>                                                                                                                                               </span><br><span class="line">	linux-vdso.so.1 (0x00007fff883b2000)</span><br><span class="line">	libc.so.6 =&gt; /lib/libc.so.6 (0x00007f20bbd75000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00007f20bbf64000)	</span><br><span class="line">	</span><br></pre></td></tr></table></figure></li>
-<li>need to copy these shared libraries and bin executable file into chrootjail directory<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[ /chrootjail ]$ cp /bin/bash bin/  </span><br><span class="line">cp /lib/libdl.so.2 lib/ </span><br><span class="line">cp /lib64/ld-linux-x86-64.so.2 lib64/ </span><br><span class="line">cp /lib/libc.so.6 lib/  </span><br></pre></td></tr></table></figure></li>
-<li>go to chrootjail and run chroot command, then we will go to chroot jail<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ /chrootjail ]$ chroot .                                                                                                                                                  </span><br><span class="line">bash: warning: setlocale: LC_ALL: cannot change locale (en_US)</span><br><span class="line">bash-5.0# </span><br></pre></td></tr></table></figure></li>
+<li>use ldd command to find out the shared libraries required by a program</li>
 </ol>
-
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ldd /bin/bash</span>                                                                                                                                             </span><br><span class="line">	linux-vdso.so.1 (0x00007ffee4336000)</span><br><span class="line">	libdl.so.2 =&gt; /lib/libdl.so.2 (0x00007f3e43045000)</span><br><span class="line">	libc.so.6 =&gt; /lib/libc.so.6 (0x00007f3e42e5b000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00007f3e43050000)</span><br><span class="line"><span class="meta prompt_">	</span></span><br><span class="line"><span class="meta prompt_">$ </span><span class="language-bash">ldd /bin/ls</span>                                                                                                                                               </span><br><span class="line">	linux-vdso.so.1 (0x00007fff883b2000)</span><br><span class="line">	libc.so.6 =&gt; /lib/libc.so.6 (0x00007f20bbd75000)</span><br><span class="line">	/lib64/ld-linux-x86-64.so.2 (0x00007f20bbf64000)	</span><br><span class="line">	</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>need to copy these shared libraries and bin executable file into chrootjail directory</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[ /chrootjail ]$ cp /bin/bash bin/  </span><br><span class="line">cp /lib/libdl.so.2 lib/ </span><br><span class="line">cp /lib64/ld-linux-x86-64.so.2 lib64/ </span><br><span class="line">cp /lib/libc.so.6 lib/  </span><br></pre></td></tr></table></figure>
+<ol start="4">
+<li>go to chrootjail and run chroot command, then we will go to chroot jail</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[ /chrootjail ]$ chroot .                                                                                                                                                  </span><br><span class="line">bash: warning: setlocale: LC_ALL: cannot change locale (en_US)</span><br><span class="line">bash-5.0# </span><br></pre></td></tr></table></figure>
       
     </div>
 
@@ -921,95 +1160,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
-      <meta itemprop="name" content="Yue">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Yue's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/YueBlog/2024/01/13/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-01-13 19:25:42" itemprop="dateCreated datePublished" datetime="2024-01-13T19:25:42+08:00">2024-01-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-12 20:35:48" itemprop="dateModified" datetime="2024-03-12T20:35:48+08:00">2024-03-12</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d -g -i /Users/yueh/.ssh/id_github</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="Insert-images-into-blog"><a href="#Insert-images-into-blog" class="headerlink" title="Insert images into blog"></a>Insert images into blog</h3><p>$ create a new directory in source/images<br>$ put the images into the directory<br>$ use the markdown syntax to insert the images into the blog</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">img.png</span>](<span class="link">images/jmeter_logview.png</span>)</span><br></pre></td></tr></table></figure>
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/YueBlog/page/2/">2</a><a class="extend next" rel="next" title="Next page" aria-label="Next page" href="/YueBlog/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
 
 </div>
   </main>
@@ -1019,13 +1172,13 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
     <span class="author" itemprop="copyrightHolder">Yue</span>
   </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
     </div>
@@ -1036,6 +1189,7 @@
     <i class="fa fa-arrow-up fa-lg"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -1044,6 +1198,7 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
 <script src="/YueBlog/js/comments.js"></script><script src="/YueBlog/js/utils.js"></script><script src="/YueBlog/js/motion.js"></script><script src="/YueBlog/js/next-boot.js"></script>
 
   
@@ -1051,6 +1206,7 @@
 
 
 
+  <script src="/YueBlog/js/third-party/pace.js"></script>
 
 
   

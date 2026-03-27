@@ -21,27 +21,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":350},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
 
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="The terraform plan command is a crucial part of Terraform’s workflow. It allows you to preview the changes that Terraform will make to your infrastructure before actually applying them. Here’s a step-">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/index.html">
+<meta property="og:title" content="Terraform">
+<meta property="og:url" content="https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/index.html">
 <meta property="og:site_name" content="Yue&#39;s Blog">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="The terraform plan command is a crucial part of Terraform’s workflow. It allows you to preview the changes that Terraform will make to your infrastructure before actually applying them. Here’s a step-">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-01-13T11:25:42.405Z">
-<meta property="article:modified_time" content="2024-03-12T12:35:48.461Z">
+<meta property="article:published_time" content="2024-08-05T09:46:28.000Z">
+<meta property="article:modified_time" content="2024-08-05T09:47:06.095Z">
 <meta property="article:author" content="Yue">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/">
+<link rel="canonical" href="https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/","path":"2024/01/13/hello-world/","title":"Hello World"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/","path":"2024/08/05/Terraform/","title":"Terraform"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Hello World | Yue's Blog</title>
+<title>Terraform | Yue's Blog</title>
   
 
 
@@ -114,7 +114,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Insert-images-into-blog"><span class="nav-number">1.5.</span> <span class="nav-text">Insert images into blog</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Load-Configuration"><span class="nav-number">1.</span> <span class="nav-text">1. Load Configuration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Load-State"><span class="nav-number">2.</span> <span class="nav-text">2. Load State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Refresh-State"><span class="nav-number">3.</span> <span class="nav-text">3. Refresh State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Generate-Execution-Plan"><span class="nav-number">4.</span> <span class="nav-text">4. Generate Execution Plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Output-Plan"><span class="nav-number">5.</span> <span class="nav-text">5. Output Plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-User-Review"><span class="nav-number">6.</span> <span class="nav-text">6. User Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Apply-Plan"><span class="nav-number">7.</span> <span class="nav-text">7. Apply Plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Points"><span class="nav-number">8.</span> <span class="nav-text">Key Points</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,7 +160,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/01/13/hello-world/">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/YueBlog/images/avatar.gif">
@@ -173,12 +173,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Hello World | Yue's Blog">
+      <meta itemprop="name" content="Terraform | Yue's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Hello World
+          Terraform
         </h1>
 
         <div class="post-meta-container">
@@ -188,15 +188,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-01-13 19:25:42" itemprop="dateCreated datePublished" datetime="2024-01-13T19:25:42+08:00">2024-01-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-03-12 20:35:48" itemprop="dateModified" datetime="2024-03-12T20:35:48+08:00">2024-03-12</time>
+      <time title="Created: 2024-08-05 17:46:28 / Modified: 17:47:06" itemprop="dateCreated datePublished" datetime="2024-08-05T17:46:28+08:00">2024-08-05</time>
     </span>
 
   
@@ -208,21 +202,44 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+    <div class="post-body" itemprop="articleBody"><p>The <code>terraform plan</code> command is a crucial part of Terraform’s workflow. It allows you to preview the changes that Terraform will make to your infrastructure before actually applying them. Here’s a step-by-step flow of what happens when you run <code>terraform plan</code>:</p>
+<h3 id="1-Load-Configuration"><a href="#1-Load-Configuration" class="headerlink" title="1. Load Configuration"></a><strong>1. Load Configuration</strong></h3><ul>
+<li><strong>Read Configuration Files</strong>: Terraform reads the <code>.tf</code> and <code>.tf.json</code> files in your working directory to understand the desired state of your infrastructure.</li>
+<li><strong>Parse and Validate Configuration</strong>: Terraform parses the configuration files and performs initial validation to check for syntax errors or misconfigurations.</li>
+</ul>
+<h3 id="2-Load-State"><a href="#2-Load-State" class="headerlink" title="2. Load State"></a><strong>2. Load State</strong></h3><ul>
+<li><strong>Read State File</strong>: Terraform loads the current state file (<code>terraform.tfstate</code>) to understand the existing state of your infrastructure. This state file contains information about the resources that Terraform manages and their current configuration.</li>
+<li><strong>Synchronize with Backend</strong>: If you’re using a remote backend (like AWS S3, Azure Blob Storage, etc.), Terraform will fetch the latest state from the backend.</li>
+</ul>
+<h3 id="3-Refresh-State"><a href="#3-Refresh-State" class="headerlink" title="3. Refresh State"></a><strong>3. Refresh State</strong></h3><ul>
+<li><strong>Query Infrastructure</strong>: Terraform queries the actual state of resources in the cloud provider (e.g., Azure, AWS) to get the current state of resources that are already deployed.</li>
+<li><strong>Update State File</strong>: The state file is updated with the current state information. This step ensures that Terraform’s view of the infrastructure is accurate before generating a plan.</li>
+</ul>
+<h3 id="4-Generate-Execution-Plan"><a href="#4-Generate-Execution-Plan" class="headerlink" title="4. Generate Execution Plan"></a><strong>4. Generate Execution Plan</strong></h3><ul>
+<li><strong>Compare Desired and Current States</strong>: Terraform compares the desired state (as defined in your configuration files) with the current state (from the state file and actual infrastructure).</li>
+<li><strong>Create Plan</strong>: Terraform generates an execution plan that details the actions required to bring the infrastructure from its current state to the desired state. This includes creating, updating, or deleting resources.</li>
+</ul>
+<h3 id="5-Output-Plan"><a href="#5-Output-Plan" class="headerlink" title="5. Output Plan"></a><strong>5. Output Plan</strong></h3><ul>
+<li><strong>Display Plan</strong>: Terraform outputs the plan to the terminal, showing a summary of the changes that will be made. This includes:<ul>
+<li><strong>Additions</strong>: New resources that will be created.</li>
+<li><strong>Modifications</strong>: Existing resources that will be updated.</li>
+<li><strong>Deletions</strong>: Resources that will be destroyed.</li>
+</ul>
+</li>
+<li><strong>Plan Details</strong>: For each resource, Terraform shows the current state and the planned changes.</li>
+</ul>
+<h3 id="6-User-Review"><a href="#6-User-Review" class="headerlink" title="6. User Review"></a><strong>6. User Review</strong></h3><ul>
+<li><strong>Review the Plan</strong>: You review the output to ensure that the changes Terraform plans to make align with your expectations. This step is crucial to prevent unintended modifications.</li>
+</ul>
+<h3 id="7-Apply-Plan"><a href="#7-Apply-Plan" class="headerlink" title="7. Apply Plan"></a><strong>7. Apply Plan</strong></h3><ul>
+<li><strong>Manual Execution</strong>: After reviewing the plan, you can execute <code>terraform apply</code> to apply the changes. You may also apply the plan directly from a saved plan file if you use the <code>terraform apply &lt;plan-file&gt;</code> command.</li>
+</ul>
+<h3 id="Key-Points"><a href="#Key-Points" class="headerlink" title="Key Points"></a><strong>Key Points</strong></h3><ul>
+<li><strong>No Changes to Infrastructure</strong>: The <code>terraform plan</code> command does not make any changes to your infrastructure. It only generates a preview of what changes will occur if you decide to apply them.</li>
+<li><strong>Plan Files</strong>: You can save the plan to a file using the <code>-out</code> option (<code>terraform plan -out=plan.tfplan</code>) and apply it later using <code>terraform apply plan.tfplan</code>.</li>
+</ul>
+<p>By following this flow, <code>terraform plan</code> helps ensure that you understand the implications of your changes before they are applied, reducing the risk of unintended modifications to your infrastructure.</p>
 
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br><span class="line">$ hexo d -g -i /Users/yueh/.ssh/id_github</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-<h3 id="Insert-images-into-blog"><a href="#Insert-images-into-blog" class="headerlink" title="Insert images into blog"></a>Insert images into blog</h3><p>$ create a new directory in source/images<br>$ put the images into the directory<br>$ use the markdown syntax to insert the images into the blog</p>
-<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![<span class="string">img.png</span>](<span class="link">images/jmeter_logview.png</span>)</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -235,10 +252,13 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
+                <a href="/YueBlog/2024/06/14/influxDB/" rel="prev" title="influxDB">
+                  <i class="fa fa-angle-left"></i> influxDB
+                </a>
             </div>
             <div class="post-nav-item">
-                <a href="/YueBlog/2024/01/29/bash-shell-script/" rel="next" title="bash shell script">
-                  bash shell script <i class="fa fa-angle-right"></i>
+                <a href="/YueBlog/2024/09/13/provider/" rel="next" title="provider">
+                  provider <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

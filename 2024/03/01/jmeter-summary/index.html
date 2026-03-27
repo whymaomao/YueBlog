@@ -12,19 +12,21 @@
 
 <link rel="stylesheet" href="/YueBlog/css/main.css">
 
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300italic,400,400italic,700,700italic%7CJetBrains+Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/themes/blue/pace-theme-minimal.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pace/1.2.4/pace.min.js" integrity="sha256-gqd7YTjg/BtfqWSwsJOvndl0Bxc8gFImLEkXQT8+qj0=" crossorigin="anonymous"></script>
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":350},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
 
-    <meta name="description" content="How to write a jmeter script to generete complex request payload and parse response body To specify the java version to run the script: set java home as java8 or java17  Go to the installation directo">
+    <meta name="description" content="How to write a jmeter script to generete complex request payload and parse response body To specify the java version to run the script: set java home as java8 or java17 Go to the installation director">
 <meta property="og:type" content="article">
 <meta property="og:title" content="jmeter summary">
 <meta property="og:url" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/index.html">
 <meta property="og:site_name" content="Yue&#39;s Blog">
-<meta property="og:description" content="How to write a jmeter script to generete complex request payload and parse response body To specify the java version to run the script: set java home as java8 or java17  Go to the installation directo">
+<meta property="og:description" content="How to write a jmeter script to generete complex request payload and parse response body To specify the java version to run the script: set java home as java8 or java17 Go to the installation director">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/images/jmeter_logview.png">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/images/project_depedency.png">
@@ -32,7 +34,7 @@
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/images/response_code_not_200.png">
 <meta property="og:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/images/action_after_sample_error.png">
 <meta property="article:published_time" content="2024-03-01T09:27:59.000Z">
-<meta property="article:modified_time" content="2024-05-08T00:35:38.600Z">
+<meta property="article:modified_time" content="2026-03-27T05:43:14.812Z">
 <meta property="article:author" content="Yue">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://whymaomao.github.io/YueBlog/2024/03/01/jmeter-summary/images/jmeter_logview.png">
@@ -68,6 +70,9 @@
       <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
   <div class="site-nav-toggle">
     <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
     </div>
   </div>
 
@@ -78,6 +83,7 @@
       <p class="site-title">Yue's Blog</p>
       <i class="logo-line"></i>
     </a>
+      <p class="site-subtitle" itemprop="description">Engineering Notes</p>
   </div>
 
   <div class="site-nav-right">
@@ -88,6 +94,10 @@
 
 
 
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/YueBlog/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-archives"><a href="/YueBlog/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a></li><li class="menu-item menu-item-tags"><a href="/YueBlog/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
 
 
 
@@ -110,25 +120,30 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-write-a-jmeter-script-to-generete-complex-request-payload-and-parse-response-body"><span class="nav-number">1.</span> <span class="nav-text">How to write a jmeter script to generete complex request payload and parse response body</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-generate-the-complex-request-and-parse-response-payload"><span class="nav-number">1.1.</span> <span class="nav-text">How to generate the complex request and parse response payload ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-extract-common-functions-into-library-for-jmeter"><span class="nav-number">1.2.</span> <span class="nav-text">How to extract common functions into library for jmeter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-avoid-breaking-the-test-if-response-status-code-is-not-200"><span class="nav-number">1.3.</span> <span class="nav-text">How to avoid breaking the test if response status code is not 200</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-add-custom-assertion-to-the-response"><span class="nav-number">1.4.</span> <span class="nav-text">How to add custom assertion to the response</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-use-JSR223-sampler-processor-in-jmeter"><span class="nav-number"></span> <span class="nav-text">How to use JSR223 sampler&#x2F;processor in jmeter:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-debug-jmeter-test-plan"><span class="nav-number"></span> <span class="nav-text">How to debug jmeter test plan:</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-record-for-simple-web-browser-requests"><span class="nav-number"></span> <span class="nav-text">How to record for simple web browser requests:</span></a></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-write-a-jmeter-script-to-generete-complex-request-payload-and-parse-response-body"><span class="nav-number">1.</span> <span class="nav-text">How to write a jmeter script to generete complex request payload and parse response body</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-generate-the-complex-request-and-parse-response-payload"><span class="nav-number">1.1.</span> <span class="nav-text">How to generate the complex request and parse response payload ?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-extract-common-functions-into-library-for-jmeter"><span class="nav-number">1.2.</span> <span class="nav-text">How to extract common functions into library for jmeter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-avoid-breaking-the-test-if-response-status-code-is-not-200"><span class="nav-number">1.3.</span> <span class="nav-text">How to avoid breaking the test if response status code is not 200</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-add-custom-assertion-to-the-response"><span class="nav-number">1.4.</span> <span class="nav-text">How to add custom assertion to the response</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-use-JSR223-sampler-processor-in-jmeter"><span class="nav-number">2.</span> <span class="nav-text">How to use JSR223 sampler&#x2F;processor in jmeter</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-debug-jmeter-test-plan"><span class="nav-number">3.</span> <span class="nav-text">How to debug jmeter test plan</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-to-record-for-simple-web-browser-requests"><span class="nav-number">4.</span> <span class="nav-text">How to record for simple web browser requests</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
         <div class="site-overview-wrap sidebar-panel">
           <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
   <p class="site-author-name" itemprop="name">Yue</p>
-  <div class="site-description" itemprop="description"></div>
+  <div class="site-description" itemprop="description">Personal notes on DevOps, infrastructure, and backend engineering</div>
 </div>
 <div class="site-state-wrap animated">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/YueBlog/archives/">
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
   </nav>
 </div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/whymaomao" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;whymaomao" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
 
         </div>
       </div>
@@ -160,7 +175,7 @@
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
@@ -187,7 +202,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2024-05-08 08:35:38" itemprop="dateModified" datetime="2024-05-08T08:35:38+08:00">2024-05-08</time>
+      <time title="Modified: 2026-03-27 13:43:14" itemprop="dateModified" datetime="2026-03-27T13:43:14+08:00">2026-03-27</time>
     </span>
 
   
@@ -200,7 +215,7 @@
     
     
     <div class="post-body" itemprop="articleBody"><h2 id="How-to-write-a-jmeter-script-to-generete-complex-request-payload-and-parse-response-body"><a href="#How-to-write-a-jmeter-script-to-generete-complex-request-payload-and-parse-response-body" class="headerlink" title="How to write a jmeter script to generete complex request payload and parse response body"></a>How to write a jmeter script to generete complex request payload and parse response body</h2><ol>
-<li>To specify the java version to run the script: set java home as java8 or java17 </li>
+<li>To specify the java version to run the script: set java home as java8 or java17</li>
 <li>Go to the installation directory. e.g: /usr/local/Cellar/jmeter/5.6.2/libexec/bin in my mac</li>
 <li>Run the java package to launch the app <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -jar ApacheJMeter.jar</span><br></pre></td></tr></table></figure></li>
 <li>Add a JSR223 Preprocessor or JSR223 PostProcessor in the script </li>
@@ -229,7 +244,7 @@
 </ul>
 </li>
 </ol>
-<h3 id="How-to-extract-common-functions-into-library-for-jmeter"><a href="#How-to-extract-common-functions-into-library-for-jmeter" class="headerlink" title="How to extract common functions into library for jmeter"></a>How to extract common functions into library for jmeter</h3><p>refer to: <a target="_blank" rel="noopener" href="https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s">https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s</a></p>
+<h3 id="How-to-extract-common-functions-into-library-for-jmeter"><a href="#How-to-extract-common-functions-into-library-for-jmeter" class="headerlink" title="How to extract common functions into library for jmeter"></a>How to extract common functions into library for jmeter</h3><p>Refer to: <a target="_blank" rel="noopener" href="https://dzone.com/articles/how-to-reuse-your-jmeter-code-with-jar-files-and-s">How to Reuse Your JMeter Code with Jar Files</a></p>
 <ol>
 <li>create a new groovy project in intellij idea</li>
 <li>open project structure in intellij app, go to Modules, add the dependency jars used for the groovy classes, here I put the dependency libs in directory “libs”<br><img src="images/project_depedency.png" alt="img.png"></li>
@@ -253,7 +268,7 @@
 <li>Add a JSR223 Assertion to the request<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>( !prev.isSuccessful() ) &#123;</span><br><span class="line">	AssertionResult.setFailure(<span class="literal">true</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
 <li>In thread group settings, set the Action as “Stop Thread” when the assertion result is failed<br><img src="images/action_after_sample_error.png" alt="img.png"></li>
 </ol>
-<h1 id="How-to-use-JSR223-sampler-processor-in-jmeter"><a href="#How-to-use-JSR223-sampler-processor-in-jmeter" class="headerlink" title="How to use JSR223 sampler/processor in jmeter:"></a>How to use JSR223 sampler/processor in jmeter:</h1><p>JSR223 stands for “Java Specification Request 223.” It’s a standard within the Java platform that defines scripting language bindings for the Java Virtual Machine (JVM).<br>Use JSR223 allows to execute custom scripts in jmeter for complex scenarios</p>
+<h2 id="How-to-use-JSR223-sampler-processor-in-jmeter"><a href="#How-to-use-JSR223-sampler-processor-in-jmeter" class="headerlink" title="How to use JSR223 sampler/processor in jmeter"></a>How to use JSR223 sampler/processor in jmeter</h2><p>JSR223 stands for “Java Specification Request 223.” It’s a standard within the Java platform that defines scripting language bindings for the Java Virtual Machine (JVM).<br>Use JSR223 allows to execute custom scripts in jmeter for complex scenarios</p>
 <ol>
 <li>JSR223 usage:<ul>
 <li>Dynamic generate request payloads, parameters or headers</li>
@@ -282,7 +297,7 @@
 </ul>
 </li>
 </ol>
-<h1 id="How-to-debug-jmeter-test-plan"><a href="#How-to-debug-jmeter-test-plan" class="headerlink" title="How to debug jmeter test plan:"></a>How to debug jmeter test plan:</h1><ol>
+<h2 id="How-to-debug-jmeter-test-plan"><a href="#How-to-debug-jmeter-test-plan" class="headerlink" title="How to debug jmeter test plan"></a>How to debug jmeter test plan</h2><ol>
 <li>set the log level in jmeter GUI by going to Options -&gt; Log Level -&gt; DEBUG / TRACE</li>
 <li>enable log viewer by going to Options -&gt; Log Viewer</li>
 <li>Check logs in jmeter - GUI</li>
@@ -290,12 +305,12 @@
 <li>Or change the log level in the log4j2.xml file in the bin directory of jmeter for the specific class you want to debug</li>
 <li>Add a debug sampler in the test plan to print the Jmeter variables value</li>
 </ol>
-<h1 id="How-to-record-for-simple-web-browser-requests"><a href="#How-to-record-for-simple-web-browser-requests" class="headerlink" title="How to record for simple web browser requests:"></a>How to record for simple web browser requests:</h1><ol>
+<h2 id="How-to-record-for-simple-web-browser-requests"><a href="#How-to-record-for-simple-web-browser-requests" class="headerlink" title="How to record for simple web browser requests"></a>How to record for simple web browser requests</h2><ol>
 <li>Go to browser, record the web requests and save it as .har file</li>
 <li>Go to blazemeter online site: <a target="_blank" rel="noopener" href="https://converter.blazemeter.com/">https://converter.blazemeter.com/</a></li>
 <li>Upload the har file and convert it into jmx file</li>
 <li>Download the jmx file and open it in jmeter</li>
-<li>Refactor the jmx file accordingly </li>
+<li>Refactor the jmx file accordingly</li>
 </ol>
 
     </div>
@@ -337,13 +352,13 @@
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2026</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
     <span class="author" itemprop="copyrightHolder">Yue</span>
   </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/pisces/" rel="noopener" target="_blank">NexT.Pisces</a>
   </div>
 
     </div>
@@ -354,6 +369,7 @@
     <i class="fa fa-arrow-up fa-lg"></i>
     <span>0%</span>
   </div>
+  <div class="reading-progress-bar"></div>
 
 <noscript>
   <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
@@ -362,6 +378,7 @@
 
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/medium-zoom/1.1.0/medium-zoom.min.js" integrity="sha256-ZgMyDAIYDYGxbcpJcfUnYwNevG/xi9OHKaR/8GK+jWc=" crossorigin="anonymous"></script>
 <script src="/YueBlog/js/comments.js"></script><script src="/YueBlog/js/utils.js"></script><script src="/YueBlog/js/motion.js"></script><script src="/YueBlog/js/next-boot.js"></script>
 
   
@@ -369,6 +386,7 @@
 
 
 
+  <script src="/YueBlog/js/third-party/pace.js"></script>
 
 
   
