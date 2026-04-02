@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/YueBlog/archives/">
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/YueBlog/tags/">
-        <span class="site-state-item-count">25</span>
+        <span class="site-state-item-count">27</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -154,7 +154,7 @@
     
     <li class="sidebar-widget-item">
       <a href="/YueBlog/categories/ARTS/">ARTS</a>
-      <span class="sidebar-widget-count">1</span>
+      <span class="sidebar-widget-count">2</span>
     </li>
     
     <li class="sidebar-widget-item">
@@ -314,6 +314,16 @@
     </li>
     
     <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/spec-kit/">spec-kit</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/vibe-coding/">vibe-coding</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
       <a href="/YueBlog/tags/Hibernate%E5%AD%A6%E4%B9%A0/">Hibernate学习</a>
       <span class="sidebar-widget-count">1</span>
     </li>
@@ -333,6 +343,103 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2026/04/02/2026-04-02-vibe-coding-spec-kit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
+      <meta itemprop="name" content="Yue">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yue's Blog">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/YueBlog/2026/04/02/2026-04-02-vibe-coding-spec-kit/" class="post-title-link" itemprop="url">Vibe Coding 第一课：Spec-Kit 思维训练</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-02 20:00:00 / Modified: 22:57:13" itemprop="dateCreated datePublished" datetime="2026-04-02T20:00:00+08:00">2026-04-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/YueBlog/categories/ARTS/" itemprop="url" rel="index"><span itemprop="name">ARTS</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><strong>来源:</strong> Claude Code Vibe 教学 session | <strong>日期:</strong> 2026-04-02</p>
+</blockquote>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>Vibe coding 面试中，面试官评估的不是代码写得快不快，而是：<br><strong>能否写出足够清晰的 spec，让 AI 第一次就交付正确的结果，并且自己能验证它。</strong></p>
+<h2 id="核心知识点"><a href="#核心知识点" class="headerlink" title="核心知识点"></a>核心知识点</h2><h3 id="Spec-Kit-的五个要素"><a href="#Spec-Kit-的五个要素" class="headerlink" title="Spec-Kit 的五个要素"></a>Spec-Kit 的五个要素</h3><p>在向 AI 提 prompt 之前，必须先写 spec-kit：</p>
+<ol>
+<li><strong>要构建什么</strong> — 描述行为，不是实现</li>
+<li><strong>约束条件</strong> — 技术栈、禁止使用的库、具体选型（不能模糊，AI 会自己填空）</li>
+<li><strong>边界情况</strong> — 空结果、非法参数、超出范围的输入</li>
+<li><strong>期望的输出格式</strong> — 具体的数据结构，每个字段都要写出来</li>
+<li><strong>验收条件</strong> — 不是”用测试验”，而是”传入 X，返回结果必须满足 Y”</li>
+</ol>
+<h3 id="验收条件是最容易被跳过的一项"><a href="#验收条件是最容易被跳过的一项" class="headerlink" title="验收条件是最容易被跳过的一项"></a>验收条件是最容易被跳过的一项</h3><p>没有验收条件，你给 AI 的不是 spec，是祈祷。<br>验收条件要具体到输入输出的对应关系，而不是测试方式。</p>
+<h2 id="关键收获"><a href="#关键收获" class="headerlink" title="关键收获"></a>关键收获</h2><ul>
+<li>Spec 不是需求说明，是你对系统行为的完整描述——写完之后你自己应该能验证它</li>
+<li>约束条件必须具体，否则 AI 会自己决定，选错了就要返工</li>
+<li>第一次写 spec-kit 一定有漏洞，迭代能力本身就是核心技能</li>
+<li>Vibe coding 的核心不是”用 AI 写代码”，而是”写清晰到不需要手把手的 spec”</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1359,148 +1466,6 @@
 
 <p><img src="../images/top_pid.png" alt="img.png"></p>
 <p>As shown in the above screenshot, the main reason caused the high CPU usage is the GC threads in the java program.<br>Then we can focus on the GC logs to check the GC status.</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/03/12/ssh-summary/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
-      <meta itemprop="name" content="Yue">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Yue's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/YueBlog/2024/03/12/ssh-summary/" class="post-title-link" itemprop="url">ssh-summary</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-03-12 20:53:04" itemprop="dateCreated datePublished" datetime="2024-03-12T20:53:04+08:00">2024-03-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-27 14:10:00" itemprop="dateModified" datetime="2026-03-27T14:10:00+08:00">2026-03-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/YueBlog/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><em>Generated by Chat-GPT</em></p>
-<p>SSH public key authentication is a secure way to authenticate yourself to a remote server using asymmetric cryptography.</p>
-<h3 id="Work-flow-of-SSH-public-key-authentication"><a href="#Work-flow-of-SSH-public-key-authentication" class="headerlink" title="Work flow of SSH public key authentication"></a>Work flow of SSH public key authentication</h3><ol>
-<li><p>Client initiates connection:<br>The client (your local machine) initiates a connection to the server using SSH by specifying the hostname or IP address of the server and the username to authenticate as.</p>
-</li>
-<li><p>Server responds with its identification:<br>Upon receiving the connection request, the server responds with its identification, including its public host key. This key is used to verify the server’s identity and to establish a secure channel.</p>
-</li>
-<li><p>Client checks server’s host key:<br>The client checks whether it has seen the server’s host key before. If it has, and the key matches the one previously stored, the connection proceeds. If not, the client may prompt the user to confirm the authenticity of the server’s key. Once the key is verified, the server is added in known_hosts file in ~/.ssh directory on client machine. The known_hosts file contains the information about all the verified servers by the client.</p>
-</li>
-<li><p>Key exchange and session establishment:<br>After verifying the server’s identity, the client and server perform a key exchange to agree on encryption and authentication algorithms for the session.<br>Here public key is used to encrypt data and can be freely shared. While private key that is used to decrypt data and is never shared with anyone.<br>Once the key exchange is complete, a secure session is established between the client and server.</p>
-</li>
-<li><p>Public key authentication:<br>If the server is configured to allow public key authentication, it will request the client to authenticate using a public key.<br>The client responds by sending a list of its public keys stored in the ~/.ssh/authorized_keys file or provided by the SSH agent.</p>
-</li>
-<li><p>Challenge-response authentication:<br>The server generates a challenge and sends it to the client.<br>The client uses its private key to create a digital signature for the challenge and sends it back to the server.</p>
-</li>
-<li><p>Verification of the signature:<br>The server verifies the received signature using the corresponding public key stored in the authorized_keys file.<br>If the signature verification is successful, the server grants access to the client.</p>
-</li>
-<li><p>Establishing the SSH session:<br>With successful authentication, the client gains access to the server and can interact with it securely through the established SSH session.<br>Commands executed on the client are sent encrypted to the server, and responses from the server are encrypted before being sent back to the client.</p>
-</li>
-<li><p>Session termination:<br>When the session is complete, either the client or server can terminate the connection, closing the SSH session.<br>This detailed workflow illustrates how SSH public key authentication works to establish a secure and encrypted connection between a client and server, allowing for secure communication and remote access.</p>
-</li>
-</ol>
-<p><strong>References:</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.ssh.com/ssh/public-key-authentication">SSH Public Key Authentication</a></li>
-<li><a target="_blank" rel="noopener" href="https://medium.com/@hellomudit/understanding-ssh-workflow-66a0e8d4bf65">Understanding SSH Workflow</a></li>
-</ul>
-<h3 id="Steps-to-set-up-SSH-public-key-authentication"><a href="#Steps-to-set-up-SSH-public-key-authentication" class="headerlink" title="Steps to set up SSH public key authentication"></a>Steps to set up SSH public key authentication</h3><ol>
-<li><p>Generate SSH Key Pair:<br>On your local machine, open a terminal.<br>Use the following command to generate an SSH key pair:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096</span><br></pre></td></tr></table></figure>
-<p>This command will prompt you to choose a location to save the key pair and optionally, a passphrase.<br>Press enter to accept the default location and press enter again to skip setting a passphrase if you want.</p>
-</li>
-<li><p>Copy Public Key to Remote Server:<br>After generating the key pair, you will have two files: id_rsa (private key) and id_rsa.pub (public key).<br>Now, you need to copy the public key to the remote server. You can use the ssh-copy-id command:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-copy-id username@remote_host</span><br></pre></td></tr></table></figure>
-<p>Replace username with your username on the remote server and remote_host with the hostname or IP address of the server.<br>Alternatively, you can manually copy the contents of the id_rsa.pub file to the ~/.ssh/authorized_keys file on the remote server.</p>
-</li>
-<li><p>Configure SSH on the Server:<br>Make sure the permissions are set correctly on the ~/.ssh directory and the authorized_keys file on the server. Run these commands:<br>bash</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">chmod 700 ~/.ssh</span><br><span class="line">chmod 600 ~/.ssh/authorized_keys</span><br></pre></td></tr></table></figure>
-<p>Additionally, ensure that SSH server configuration allows public key authentication. Open the SSH server configuration file<br>(usually located at /etc/ssh/sshd_config) and make sure the following settings are enabled:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">PubkeyAuthentication yes</span><br><span class="line">ChallengeResponseAuthentication no</span><br><span class="line">PasswordAuthentication no</span><br></pre></td></tr></table></figure>
-<p>After making changes to the SSH server configuration, restart the SSH service:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl restart ssh</span><br></pre></td></tr></table></figure></li>
-<li><p>Test SSH Connection:<br>Now, you should be able to SSH into the remote server without entering a password:</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh username@remote_host</span><br></pre></td></tr></table></figure>
-<p>If everything is set up correctly, you should be logged into the server without being prompted for a password.<br>That’s it! You’ve successfully set up SSH public key authentication. This method provides a more secure way to authenticate to your server compared to password authentication.<br>Make sure to keep your private key secure and never share it with anyone.</p>
-</li>
-</ol>
-<h3 id="Troubleshooting"><a href="#Troubleshooting" class="headerlink" title="Troubleshooting:"></a>Troubleshooting:</h3><ol>
-<li>If you encounter permission issues, ensure that the ~/.ssh directory and authorized_keys file have the correct permissions as mentioned in step 3.</li>
-<li>Use command <code>ssh -vvv username@remote_host</code> to get verbose output for debugging connection issues.</li>
-<li>Review SSH Server Logs: Check the SSH server logs on the remote server for any error messages. The location of the logs varies depending on the server’s operating system and configuration. Common locations include /var/log/auth.log (for Debian/Ubuntu) or /var/log/secure (for CentOS/RHEL).</li>
-<li>If you have multiple SSH key files, you can specify which key to use for authentication using the <code>-i</code> option with the <code>ssh</code> command:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -i /path/to/private_key username@remote_host</span><br></pre></td></tr></table></figure></li>
-<li>If you met the “Too many authentication failures”, you can specify not to use for authentication using the <code>-o</code> option with the <code>ssh</code> command, since it may be caused by the client offering the keys in the wrong order:<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -o PubkeyAuthentication=no username@remote_host</span><br></pre></td></tr></table></figure></li>
-<li>Make sure you login user has the right permission to use the SSH </li>
-<li>If you met the issue that the SSH connection is closed immediately after authentication, you can check the <code>MaxAuthTries</code> in the sshd_config file, and set it to a larger number to allow more authentication attempts.</li>
-<li>If you met the issue that you can’t login to the server, you can check the <code>AllowUsers</code> in the sshd_config file, and add your username to the list to allow the user to login.</li>
-<li>If you forgot the user password and failed too many times to login to the server, you can reset the password and failure numbers in server side as below: <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">root@mytestserver:~# pam_tally2 --user admin --reset</span><br><span class="line">Login           Failures Latest failure     From</span><br><span class="line">admin        29    11/24/23 10:04:32  xxxx.xxx.xx.xx</span><br><span class="line">root@mytestserver:~# passwd admin</span><br><span class="line">New password:</span><br><span class="line">Retype new password:</span><br><span class="line">Enter new UNIX password:</span><br><span class="line">Retype new UNIX password:</span><br><span class="line">passwd: password updated successfully</span><br><span class="line">root@mytestserver:~# pam_tally2 --user admin --reset</span><br><span class="line">Login           Failures Latest failure     From</span><br><span class="line">admin         0</span><br></pre></td></tr></table></figure></li>
-</ol>
 
       
     </div>
