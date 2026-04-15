@@ -124,7 +124,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/YueBlog/archives/">
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -135,7 +135,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/YueBlog/tags/">
-        <span class="site-state-item-count">27</span>
+        <span class="site-state-item-count">30</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
@@ -164,7 +164,7 @@
     
     <li class="sidebar-widget-item">
       <a href="/YueBlog/categories/Debug/">Debug</a>
-      <span class="sidebar-widget-count">1</span>
+      <span class="sidebar-widget-count">2</span>
     </li>
     
     <li class="sidebar-widget-item">
@@ -299,6 +299,21 @@
     </li>
     
     <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/Spring/">Spring</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/JPA/">JPA</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
+      <a href="/YueBlog/tags/Hibernate/">Hibernate</a>
+      <span class="sidebar-widget-count">1</span>
+    </li>
+    
+    <li class="sidebar-widget-item">
       <a href="/YueBlog/tags/weekly/">weekly</a>
       <span class="sidebar-widget-count">1</span>
     </li>
@@ -343,6 +358,115 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2026/04/15/2026-04-15-hibernate6-detached-instance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
+      <meta itemprop="name" content="Yue">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yue's Blog">
+      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Yue's Blog">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/YueBlog/2026/04/15/2026-04-15-hibernate6-detached-instance/" class="post-title-link" itemprop="url">Hibernate 6 迁移陷阱：session.remove() 不接受游离实体</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2026-04-15 09:00:00 / Modified: 09:00:41" itemprop="dateCreated datePublished" datetime="2026-04-15T09:00:00+08:00">2026-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">In</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/YueBlog/categories/Debug/" itemprop="url" rel="index"><span itemprop="name">Debug</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p><strong>来源:</strong> Claude Code | <strong>日期:</strong> 2026-04-15</p>
+</blockquote>
+<h2 id="Hibernate-6-实体生命周期：managed-vs-detached"><a href="#Hibernate-6-实体生命周期：managed-vs-detached" class="headerlink" title="Hibernate 6 实体生命周期：managed vs detached"></a>Hibernate 6 实体生命周期：managed vs detached</h2><p>在 Hibernate/JPA 中，实体有四种状态：transient、managed、detached、removed。</p>
+<ul>
+<li><strong>managed</strong>：实体处于当前 Session 的一级缓存中，事务提交时变更自动同步到数据库。</li>
+<li><strong>detached</strong>：实体曾被 Session 管理，但 Session 关闭或事务结束后脱离关联。</li>
+</ul>
+<p>Hibernate 5 的 <code>session.delete()</code> 会隐式 re-attach 游离实体再删除。<strong>Hibernate 6 删除了这一隐式行为</strong>，<code>session.remove()</code> 严格要求 managed 实体，否则抛出：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IllegalArgumentException: Removing a detached instance com.example.AuthToken#12345</span><br></pre></td></tr></table></figure>
+
+<h2 id="案例：升级-Hibernate-6-后-Token-删除接口抛异常"><a href="#案例：升级-Hibernate-6-后-Token-删除接口抛异常" class="headerlink" title="案例：升级 Hibernate 6 后 Token 删除接口抛异常"></a>案例：升级 Hibernate 6 后 Token 删除接口抛异常</h2><p><strong>调用链</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AuthFilter → TokenService.revokeToken() → TokenDao.delete() → session.remove(entity)</span><br></pre></td></tr></table></figure>
+
+<p><strong>根本原因</strong>：<code>TokenDao.findByKey()</code> 标注了 <code>@Transactional(propagation = Propagation.NOT_SUPPORTED)</code>，该传播级别挂起当前事务并在无事务环境执行查询，查询结束后返回的实体立即变为 detached。<code>delete()</code> 拿到游离实体直接调用 <code>session.remove()</code>，在 Hibernate 6 触发异常。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// findByKey — NOT_SUPPORTED: 无事务，返回游离实体</span></span><br><span class="line"><span class="meta">@Transactional(propagation = Propagation.NOT_SUPPORTED)</span></span><br><span class="line"><span class="keyword">public</span> AuthToken <span class="title function_">findByKey</span><span class="params">(AuthToken token)</span> &#123; ... &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// delete（旧代码）——在 Hibernate 6 崩溃</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(AuthToken token)</span> &#123;</span><br><span class="line">    getSession().delete(token); <span class="comment">// Hibernate 5 OK，Hibernate 6 抛异常</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><p>使用 JPA spec §3.2.7 的 merge+remove 模式，在 remove 前检查实体状态：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">delete</span><span class="params">(AuthToken token)</span> &#123;</span><br><span class="line">    <span class="type">AuthToken</span> <span class="variable">managed</span> <span class="operator">=</span> getSession().contains(token)</span><br><span class="line">            ? token</span><br><span class="line">            : getSession().merge(token); <span class="comment">// re-attach 游离实体</span></span><br><span class="line">    getSession().remove(managed);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>session.merge()</code> 将游离实体的状态复制到一个新的 managed 实例并返回，然后对 managed 实例调用 <code>remove()</code>。</p>
+<h2 id="单元测试：Mockito-反射注入-DAO"><a href="#单元测试：Mockito-反射注入-DAO" class="headerlink" title="单元测试：Mockito + 反射注入 DAO"></a>单元测试：Mockito + 反射注入 DAO</h2><p>无 Spring 容器时，用反射访问父类私有 <code>entityManager</code> 字段进行 mock：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Before</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">setUp</span><span class="params">()</span> <span class="keyword">throws</span> Exception &#123;</span><br><span class="line">    MockitoAnnotations.initMocks(<span class="built_in">this</span>);</span><br><span class="line">    dao = Mockito.spy(<span class="keyword">new</span> <span class="title class_">TokenDaoImpl</span>());</span><br><span class="line">    <span class="type">Field</span> <span class="variable">f</span> <span class="operator">=</span> BaseDaoImpl.class.getDeclaredField(<span class="string">&quot;entityManager&quot;</span>);</span><br><span class="line">    f.setAccessible(<span class="literal">true</span>);</span><br><span class="line">    f.set(dao, entityManager);</span><br><span class="line">    when(entityManager.unwrap(Session.class)).thenReturn(session);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDelete_whenDetached_mergesBeforeRemove</span><span class="params">()</span> &#123;</span><br><span class="line">    when(session.contains(detached)).thenReturn(<span class="literal">false</span>);</span><br><span class="line">    when(session.merge(detached)).thenReturn(managed);</span><br><span class="line">    dao.delete(detached);</span><br><span class="line">    verify(session).merge(detached);</span><br><span class="line">    verify(session).remove(managed);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">testDelete_whenManaged_removesDirectly</span><span class="params">()</span> &#123;</span><br><span class="line">    when(session.contains(managed)).thenReturn(<span class="literal">true</span>);</span><br><span class="line">    dao.delete(managed);</span><br><span class="line">    verify(session, never()).merge(any());</span><br><span class="line">    verify(session).remove(managed);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="关键收获"><a href="#关键收获" class="headerlink" title="关键收获"></a>关键收获</h2><ul>
+<li><strong>Hibernate 6 breaking change</strong>：<code>session.remove()</code> 不接受游离实体；<code>session.delete()</code>（已移除）会静默 re-attach，这是 Hibernate 5→6 迁移最常见的运行时异常之一。</li>
+<li><strong><code>Propagation.NOT_SUPPORTED</code> 导致游离</strong>：挂起事务后查询返回的实体立即 detached，任何后续持久化操作都需显式 re-attach。</li>
+<li><strong>标准修复</strong>：<code>session.contains(e) ? e : session.merge(e)</code> + <code>session.remove(managed)</code>，即 JPA spec §3.2.7 的 merge+remove 模式。</li>
+<li><strong>文档即契约</strong>：在 <code>findByKey()</code> 加注释说明”返回游离实体”，在接口 Javadoc 声明”接受 managed 和 detached 实体”，防止调用方误用。</li>
+<li><strong>DAO 单测注入技巧</strong>：反射访问继承体系中父类的私有 <code>entityManager</code> 字段，是脱离 Spring 容器测试 DAO 的通用手段。</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1370,103 +1494,6 @@
     
     <div class="post-body" itemprop="articleBody">
           
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/03/23/LoadTest-Troubleshooting/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/YueBlog/images/avatar.gif">
-      <meta itemprop="name" content="Yue">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Yue's Blog">
-      <meta itemprop="description" content="Personal notes on DevOps, infrastructure, and backend engineering">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Yue's Blog">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/YueBlog/2024/03/23/LoadTest-Troubleshooting/" class="post-title-link" itemprop="url">LoadTest Troubleshooting</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2024-03-23 16:27:26" itemprop="dateCreated datePublished" datetime="2024-03-23T16:27:26+08:00">2024-03-23</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-27 14:10:15" itemprop="dateModified" datetime="2026-03-27T14:10:15+08:00">2026-03-27</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">In</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/YueBlog/categories/Testing/" itemprop="url" rel="index"><span itemprop="name">Testing</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>When running load tests, we encounter an issue that the server VM CPU has reached 100% after running for a while. Here are some common troubleshooting steps to identify the issue.<br>Our webserver is using tomcat as the webserver and setup in linux machine.</p>
-<h3 id="uptime"><a href="#uptime" class="headerlink" title="uptime"></a>uptime</h3><p>When issue happens, first we can use linux command <strong>uptime</strong> to check the overall status of the server.<br><strong>uptime</strong> command will show the current time, how long the server has been running, how many users are currently logged on, and the system load averages for the past 1, 5, and 15 minutes.<br>The load average is the average number of processes that are either in a runnable or uninterruptable state.</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_">$ </span><span class="language-bash"><span class="built_in">uptime</span></span></span><br><span class="line">    07:45:38 up  32 min,  2 users,  load average: 14.04, 5.77, 2.29</span><br></pre></td></tr></table></figure>
-<p>Take the above output as an example, it shows the server is running for 32 minutes, 2 users logged on, and the load average is 14.04 for the past 1 minute, 5.77 for the past 5 minutes, and 2.29 for the past 15 minutes.<br>which indicates that the load in server is increasing in the past 1 minute.</p>
-<p>Checked the CPU number of the server, it has 8 CPUs. If the load average is larger that the CPU number, it means the server is under the heavy load.<br>To be more specific, the server is by <em>(14.04 - 8) *100% = 604%</em> overloaded in the past 1 minute.</p>
-<p>If the load average reaches 75% of the CPU number, we need to pay attention to the server performance.</p>
-<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>We can also use <strong>top</strong> command to check more details of the server status<br>Click 1 button to show the details of each CPU core. </p>
-<p><img src="../images/top.png" alt="img.png"></p>
-<p>Use below command to check more details in a java program </p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">top -H $pid </span><br></pre></td></tr></table></figure>
-
-<p><img src="../images/top_pid.png" alt="img.png"></p>
-<p>As shown in the above screenshot, the main reason caused the high CPU usage is the GC threads in the java program.<br>Then we can focus on the GC logs to check the GC status.</p>
-
       
     </div>
 
