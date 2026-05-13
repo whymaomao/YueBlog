@@ -21,30 +21,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"whymaomao.github.io","root":"/YueBlog/","images":"/YueBlog/images","scheme":"Pisces","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"always","padding":18,"offset":12},"copycode":{"enable":true,"style":"flat"},"fold":{"enable":true,"height":350},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":true,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/YueBlog/js/config.js"></script>
 
-    <meta name="description" content="The terraform plan command is a crucial part of Terraform’s workflow. It allows you to preview the changes that Terraform will make to your infrastructure before actually applying them. Here’s a step-">
+    <meta name="description" content="来源: AI Chat | 日期: 2026-05-13  MAT 核心概念Eclipse Memory Analyzer Tool（MAT）是分析 Java heap dump（.hprof）的标准工具。 几个必须理解的概念：  Retained Heap：某个对象被 GC 掉后，连带能释放的总内存。Dominator Tree 按这个排序，最大的就是你应该首先关注的 Dominator Tr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Terraform">
-<meta property="og:url" content="https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/index.html">
+<meta property="og:title" content="用 Eclipse MAT 分析 Java Heap Dump：CLI + GUI 操作手册">
+<meta property="og:url" content="https://whymaomao.github.io/YueBlog/2026/05/13/2026-05-13-mat-heap-dump-analysis/index.html">
 <meta property="og:site_name" content="Yue&#39;s Blog">
-<meta property="og:description" content="The terraform plan command is a crucial part of Terraform’s workflow. It allows you to preview the changes that Terraform will make to your infrastructure before actually applying them. Here’s a step-">
+<meta property="og:description" content="来源: AI Chat | 日期: 2026-05-13  MAT 核心概念Eclipse Memory Analyzer Tool（MAT）是分析 Java heap dump（.hprof）的标准工具。 几个必须理解的概念：  Retained Heap：某个对象被 GC 掉后，连带能释放的总内存。Dominator Tree 按这个排序，最大的就是你应该首先关注的 Dominator Tr">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-08-05T09:46:28.000Z">
-<meta property="article:modified_time" content="2026-03-27T06:10:09.443Z">
+<meta property="article:published_time" content="2026-05-13T02:00:00.000Z">
+<meta property="article:modified_time" content="2026-05-13T09:53:03.506Z">
 <meta property="article:author" content="Yue">
-<meta property="article:tag" content="terraform">
-<meta property="article:tag" content="infrastructure">
-<meta property="article:tag" content="iac">
+<meta property="article:tag" content="performance">
+<meta property="article:tag" content="MAT">
+<meta property="article:tag" content="JVM">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/">
+<link rel="canonical" href="https://whymaomao.github.io/YueBlog/2026/05/13/2026-05-13-mat-heap-dump-analysis/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/","path":"2024/08/05/Terraform/","title":"Terraform"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"https://whymaomao.github.io/YueBlog/2026/05/13/2026-05-13-mat-heap-dump-analysis/","path":"2026/05/13/2026-05-13-mat-heap-dump-analysis/","title":"用 Eclipse MAT 分析 Java Heap Dump：CLI + GUI 操作手册"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>Terraform | Yue's Blog</title>
+<title>用 Eclipse MAT 分析 Java Heap Dump：CLI + GUI 操作手册 | Yue's Blog</title>
   
 
 
@@ -117,7 +117,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Load-Configuration"><span class="nav-number">1.</span> <span class="nav-text">1. Load Configuration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Load-State"><span class="nav-number">2.</span> <span class="nav-text">2. Load State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Refresh-State"><span class="nav-number">3.</span> <span class="nav-text">3. Refresh State</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-Generate-Execution-Plan"><span class="nav-number">4.</span> <span class="nav-text">4. Generate Execution Plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Output-Plan"><span class="nav-number">5.</span> <span class="nav-text">5. Output Plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-User-Review"><span class="nav-number">6.</span> <span class="nav-text">6. User Review</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-Apply-Plan"><span class="nav-number">7.</span> <span class="nav-text">7. Apply Plan</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Points"><span class="nav-number">8.</span> <span class="nav-text">Key Points</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#MAT-%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span class="nav-number">1.</span> <span class="nav-text">MAT 核心概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CLI-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%EF%BC%88%E6%97%A0-GUI-%E6%89%B9%E9%87%8F%E5%88%86%E6%9E%90%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">CLI 操作步骤（无 GUI 批量分析）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GUI-%E6%93%8D%E4%BD%9C%E6%AD%A5%E9%AA%A4%EF%BC%88%E4%BA%A4%E4%BA%92%E5%BC%8F%E6%8E%92%E6%9F%A5%EF%BC%89"><span class="nav-number">3.</span> <span class="nav-text">GUI 操作步骤（交互式排查）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%89%93%E5%BC%80-Dump"><span class="nav-number">3.1.</span> <span class="nav-text">1. 打开 Dump</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Overview-%E9%A1%B5%E9%9D%A2"><span class="nav-number">3.2.</span> <span class="nav-text">2. Overview 页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-Dominator-Tree"><span class="nav-number">3.3.</span> <span class="nav-text">3. Dominator Tree</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-OQL-%E6%9F%A5%E8%AF%A2"><span class="nav-number">3.4.</span> <span class="nav-text">4. OQL 查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-Path-to-GC-Roots"><span class="nav-number">3.5.</span> <span class="nav-text">5. Path to GC Roots</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-%E6%9F%A5%E7%9C%8B%E5%AF%B9%E8%B1%A1%E5%AD%97%E6%AE%B5"><span class="nav-number">3.6.</span> <span class="nav-text">6. 查看对象字段</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B8%B8%E8%A7%81%E5%9D%91"><span class="nav-number">4.</span> <span class="nav-text">常见坑</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%94%AE%E6%94%B6%E8%8E%B7"><span class="nav-number">5.</span> <span class="nav-text">关键收获</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -384,7 +384,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2024/08/05/Terraform/">
+    <link itemprop="mainEntityOfPage" href="https://whymaomao.github.io/YueBlog/2026/05/13/2026-05-13-mat-heap-dump-analysis/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/YueBlog/images/avatar.gif">
@@ -397,12 +397,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="Terraform | Yue's Blog">
+      <meta itemprop="name" content="用 Eclipse MAT 分析 Java Heap Dump：CLI + GUI 操作手册 | Yue's Blog">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Terraform
+          用 Eclipse MAT 分析 Java Heap Dump：CLI + GUI 操作手册
         </h1>
 
         <div class="post-meta-container">
@@ -412,15 +412,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2024-08-05 17:46:28" itemprop="dateCreated datePublished" datetime="2024-08-05T17:46:28+08:00">2024-08-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">Edited on</span>
-      <time title="Modified: 2026-03-27 14:10:09" itemprop="dateModified" datetime="2026-03-27T14:10:09+08:00">2026-03-27</time>
+      <time title="Created: 2026-05-13 10:00:00 / Modified: 17:53:03" itemprop="dateCreated datePublished" datetime="2026-05-13T10:00:00+08:00">2026-05-13</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -428,7 +422,7 @@
       </span>
       <span class="post-meta-item-text">In</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/YueBlog/categories/DevOps/" itemprop="url" rel="index"><span itemprop="name">DevOps</span></a>
+          <a href="/YueBlog/categories/Debug/" itemprop="url" rel="index"><span itemprop="name">Debug</span></a>
         </span>
     </span>
 
@@ -441,43 +435,66 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>The <code>terraform plan</code> command is a crucial part of Terraform’s workflow. It allows you to preview the changes that Terraform will make to your infrastructure before actually applying them. Here’s a step-by-step flow of what happens when you run <code>terraform plan</code>:</p>
-<h3 id="1-Load-Configuration"><a href="#1-Load-Configuration" class="headerlink" title="1. Load Configuration"></a><strong>1. Load Configuration</strong></h3><ul>
-<li><strong>Read Configuration Files</strong>: Terraform reads the <code>.tf</code> and <code>.tf.json</code> files in your working directory to understand the desired state of your infrastructure.</li>
-<li><strong>Parse and Validate Configuration</strong>: Terraform parses the configuration files and performs initial validation to check for syntax errors or misconfigurations.</li>
+    <div class="post-body" itemprop="articleBody"><blockquote>
+<p><strong>来源:</strong> AI Chat | <strong>日期:</strong> 2026-05-13</p>
+</blockquote>
+<h2 id="MAT-核心概念"><a href="#MAT-核心概念" class="headerlink" title="MAT 核心概念"></a>MAT 核心概念</h2><p>Eclipse Memory Analyzer Tool（MAT）是分析 Java heap dump（.hprof）的标准工具。</p>
+<p>几个必须理解的概念：</p>
+<ul>
+<li><strong>Retained Heap</strong>：某个对象被 GC 掉后，连带能释放的总内存。Dominator Tree 按这个排序，最大的就是你应该首先关注的</li>
+<li><strong>Dominator Tree</strong>：谁”控制”了最多内存 —— 如果 A 是 B 的唯一引用路径，A 就 dominate B</li>
+<li><strong>Hibernate L1 Cache / SessionImpl</strong>：Hibernate 的一级缓存，把所有加载过的实体以 <code>MutableEntityEntry</code>（含 <code>loadedState</code> 快照）的形式持有，直到 Session 关闭</li>
+<li><strong>OSIV（Open Session in View）</strong>：Spring 的机制，把 Hibernate Session 绑定到整个 HTTP 请求生命周期，期间所有加载进来的对象都不释放</li>
 </ul>
-<h3 id="2-Load-State"><a href="#2-Load-State" class="headerlink" title="2. Load State"></a><strong>2. Load State</strong></h3><ul>
-<li><strong>Read State File</strong>: Terraform loads the current state file (<code>terraform.tfstate</code>) to understand the existing state of your infrastructure. This state file contains information about the resources that Terraform manages and their current configuration.</li>
-<li><strong>Synchronize with Backend</strong>: If you’re using a remote backend (like AWS S3, Azure Blob Storage, etc.), Terraform will fetch the latest state from the backend.</li>
+<hr>
+<h2 id="CLI-操作步骤（无-GUI-批量分析）"><a href="#CLI-操作步骤（无-GUI-批量分析）" class="headerlink" title="CLI 操作步骤（无 GUI 批量分析）"></a>CLI 操作步骤（无 GUI 批量分析）</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">DUMP=<span class="string">&quot;myheapdump.hprof&quot;</span></span><br><span class="line">MAT_HOME=<span class="string">&quot;<span class="variable">$HOME</span>/tools/mat&quot;</span>   <span class="comment"># 你的 MAT 解压目录</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 1) 自动生成 Leak Suspects 报告</span></span><br><span class="line"><span class="string">&quot;<span class="variable">$MAT_HOME</span>&quot;</span>/ParseHeapDump.sh <span class="string">&quot;<span class="variable">$DUMP</span>&quot;</span> org.eclipse.mat.api:suspects</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2) 生成 Overview 报告（整体内存分布）</span></span><br><span class="line"><span class="string">&quot;<span class="variable">$MAT_HOME</span>&quot;</span>/ParseHeapDump.sh <span class="string">&quot;<span class="variable">$DUMP</span>&quot;</span> org.eclipse.mat.api:overview</span><br><span class="line"></span><br><span class="line"><span class="comment"># 3) 生成 Histogram 查询报告（按类统计实例数和内存）</span></span><br><span class="line"><span class="string">&quot;<span class="variable">$MAT_HOME</span>&quot;</span>/ParseHeapDump.sh <span class="string">&quot;<span class="variable">$DUMP</span>&quot;</span> -<span class="built_in">command</span>=histogram org.eclipse.mat.api:query</span><br></pre></td></tr></table></figure>
+
+<p>输出是 ZIP 文件，解压后用浏览器打开 <code>index.html</code>。适合在没有图形界面的服务器上预处理大 dump，然后把报告传回本地看。</p>
+<hr>
+<h2 id="GUI-操作步骤（交互式排查）"><a href="#GUI-操作步骤（交互式排查）" class="headerlink" title="GUI 操作步骤（交互式排查）"></a>GUI 操作步骤（交互式排查）</h2><h3 id="1-打开-Dump"><a href="#1-打开-Dump" class="headerlink" title="1. 打开 Dump"></a>1. 打开 Dump</h3><p><code>File → Open Heap Dump</code>，等待索引建立（9 GB 约需 5–10 分钟）。</p>
+<h3 id="2-Overview-页面"><a href="#2-Overview-页面" class="headerlink" title="2. Overview 页面"></a>2. Overview 页面</h3><p>第一眼看整体占用分布，注意 <strong>“Biggest Objects”</strong> 区域——里面直接标出最大的持有者。</p>
+<h3 id="3-Dominator-Tree"><a href="#3-Dominator-Tree" class="headerlink" title="3. Dominator Tree"></a>3. Dominator Tree</h3><p><code>Window → Heap Dump Details → Dominator Tree</code></p>
+<p>按 Retained Heap 降序排列，展开最大的对象看它在持有什么。典型的 Hibernate OOM 场景会在这里看到大量 <code>SessionImpl</code>。</p>
+<h3 id="4-OQL-查询"><a href="#4-OQL-查询" class="headerlink" title="4. OQL 查询"></a>4. OQL 查询</h3><p><code>File → OQL</code>，用 OQL 精确查询特定类的实例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- 查询特定类的所有实例（COUNT 语法无效，看状态栏的数量）</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> com.example.YourEntityClass</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 查询超过 10MB 的数组</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> byte[] b <span class="keyword">WHERE</span> b.<span class="variable">@retainedHeapSize</span> <span class="operator">&gt;</span> <span class="number">10485760</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：MAT OQL 不支持 <code>COUNT(*)</code>，用 <code>SELECT *</code> 后在状态栏读实例数。</p>
+<h3 id="5-Path-to-GC-Roots"><a href="#5-Path-to-GC-Roots" class="headerlink" title="5. Path to GC Roots"></a>5. Path to GC Roots</h3><p>右键某个对象 → <code>Path to GC Roots → exclude weak/soft references</code></p>
+<p>顺着引用链往上找，找到是哪个线程 / 哪个 HTTP 请求持有了这批对象。</p>
+<h3 id="6-查看对象字段"><a href="#6-查看对象字段" class="headerlink" title="6. 查看对象字段"></a>6. 查看对象字段</h3><p>右键 → <code>Open in Inspector</code>，可以看到对象所有字段的当前值——用来确认具体是哪条业务数据导致问题。</p>
+<hr>
+<h2 id="常见坑"><a href="#常见坑" class="headerlink" title="常见坑"></a>常见坑</h2><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>原因</th>
+<th>解法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>OQL: Encountered &#39;*&#39; at line 1</code></td>
+<td>OQL 不支持 <code>COUNT(*)</code></td>
+<td>改用 <code>SELECT *</code>，看状态栏数量</td>
+</tr>
+<tr>
+<td>Thread Overview 在 Window 菜单找不到</td>
+<td>MAT 版本差异，部分版本没有这个 view</td>
+<td>改用 OQL + Path to GC Roots 代替</td>
+</tr>
+<tr>
+<td>打开 dump 极慢或 MAT 自身 OOM</td>
+<td>MAT 默认 heap 只有 1 GB</td>
+<td>编辑 <code>MemoryAnalyzer.ini</code>，加大 <code>-Xmx</code>，如 <code>-Xmx12g</code></td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="关键收获"><a href="#关键收获" class="headerlink" title="关键收获"></a>关键收获</h2><ul>
+<li>Dominator Tree 是入口，Retained Heap 最大的对象就是根因的方向</li>
+<li>Hibernate L1 Cache 是隐性内存放大器：<code>Hibernate.initialize()</code> 会把整个懒加载集合（含二进制内容）全部拉进 Session，OSIV 再让这些对象跨越整个请求生命周期不释放</li>
+<li>功能正确 ≠ 内存安全：只需要元数据的场景调用了加载全量内容的方法，在低负载下不可见，高并发下成倍放大</li>
+<li>CLI 模式（<code>ParseHeapDump.sh</code>）适合在没有图形界面时预生成报告，大幅减少传输体积</li>
+<li>OQL 是定量分析的核心工具：先用 <code>SELECT *</code> 统计数量，再配合 Inspector 和 Path to GC Roots 确认业务上下文</li>
 </ul>
-<h3 id="3-Refresh-State"><a href="#3-Refresh-State" class="headerlink" title="3. Refresh State"></a><strong>3. Refresh State</strong></h3><ul>
-<li><strong>Query Infrastructure</strong>: Terraform queries the actual state of resources in the cloud provider (e.g., Azure, AWS) to get the current state of resources that are already deployed.</li>
-<li><strong>Update State File</strong>: The state file is updated with the current state information. This step ensures that Terraform’s view of the infrastructure is accurate before generating a plan.</li>
-</ul>
-<h3 id="4-Generate-Execution-Plan"><a href="#4-Generate-Execution-Plan" class="headerlink" title="4. Generate Execution Plan"></a><strong>4. Generate Execution Plan</strong></h3><ul>
-<li><strong>Compare Desired and Current States</strong>: Terraform compares the desired state (as defined in your configuration files) with the current state (from the state file and actual infrastructure).</li>
-<li><strong>Create Plan</strong>: Terraform generates an execution plan that details the actions required to bring the infrastructure from its current state to the desired state. This includes creating, updating, or deleting resources.</li>
-</ul>
-<h3 id="5-Output-Plan"><a href="#5-Output-Plan" class="headerlink" title="5. Output Plan"></a><strong>5. Output Plan</strong></h3><ul>
-<li><strong>Display Plan</strong>: Terraform outputs the plan to the terminal, showing a summary of the changes that will be made. This includes:<ul>
-<li><strong>Additions</strong>: New resources that will be created.</li>
-<li><strong>Modifications</strong>: Existing resources that will be updated.</li>
-<li><strong>Deletions</strong>: Resources that will be destroyed.</li>
-</ul>
-</li>
-<li><strong>Plan Details</strong>: For each resource, Terraform shows the current state and the planned changes.</li>
-</ul>
-<h3 id="6-User-Review"><a href="#6-User-Review" class="headerlink" title="6. User Review"></a><strong>6. User Review</strong></h3><ul>
-<li><strong>Review the Plan</strong>: You review the output to ensure that the changes Terraform plans to make align with your expectations. This step is crucial to prevent unintended modifications.</li>
-</ul>
-<h3 id="7-Apply-Plan"><a href="#7-Apply-Plan" class="headerlink" title="7. Apply Plan"></a><strong>7. Apply Plan</strong></h3><ul>
-<li><strong>Manual Execution</strong>: After reviewing the plan, you can execute <code>terraform apply</code> to apply the changes. You may also apply the plan directly from a saved plan file if you use the <code>terraform apply &lt;plan-file&gt;</code> command.</li>
-</ul>
-<h3 id="Key-Points"><a href="#Key-Points" class="headerlink" title="Key Points"></a><strong>Key Points</strong></h3><ul>
-<li><strong>No Changes to Infrastructure</strong>: The <code>terraform plan</code> command does not make any changes to your infrastructure. It only generates a preview of what changes will occur if you decide to apply them.</li>
-<li><strong>Plan Files</strong>: You can save the plan to a file using the <code>-out</code> option (<code>terraform plan -out=plan.tfplan</code>) and apply it later using <code>terraform apply plan.tfplan</code>.</li>
-</ul>
-<p>By following this flow, <code>terraform plan</code> helps ensure that you understand the implications of your changes before they are applied, reducing the risk of unintended modifications to your infrastructure.</p>
 
     </div>
 
@@ -487,23 +504,20 @@
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/YueBlog/tags/terraform/" rel="tag"><i class="fa fa-tag"></i> terraform</a>
-              <a href="/YueBlog/tags/infrastructure/" rel="tag"><i class="fa fa-tag"></i> infrastructure</a>
-              <a href="/YueBlog/tags/iac/" rel="tag"><i class="fa fa-tag"></i> iac</a>
+              <a href="/YueBlog/tags/performance/" rel="tag"><i class="fa fa-tag"></i> performance</a>
+              <a href="/YueBlog/tags/MAT/" rel="tag"><i class="fa fa-tag"></i> MAT</a>
+              <a href="/YueBlog/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/YueBlog/2024/06/14/influxDB/" rel="prev" title="influxDB">
-                  <i class="fa fa-angle-left"></i> influxDB
+                <a href="/YueBlog/2026/04/15/2026-04-15-hibernate6-detached-instance/" rel="prev" title="Hibernate 6 迁移陷阱：session.remove() 不接受游离实体">
+                  <i class="fa fa-angle-left"></i> Hibernate 6 迁移陷阱：session.remove() 不接受游离实体
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/YueBlog/2024/09/13/provider/" rel="next" title="provider">
-                  provider <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
